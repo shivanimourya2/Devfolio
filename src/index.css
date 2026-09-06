@@ -841,58 +841,87 @@ textarea {
 
   color: #888;
 }
-
 /* =========================
    TECHNICAL STACK SECTION
 ========================= */
-/* Container & Header Setup */
+
 .tech-section {
+  position: relative;
   min-height: 100vh;
   padding: 130px 6vw 120px;
-  position: relative;
   background: #050505;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   overflow: hidden;
 }
 
-.text-center {
-  text-align: center;
-  margin: 0 auto 4rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.tech-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 2;
 }
 
-/* Open Canvas for Floating Elements */
+/* Header */
+
+.tech-header {
+  text-align: center;
+  margin: 0 auto 4rem;
+}
+
+.tech-header .section-label {
+  margin-bottom: 1rem;
+}
+
+.tech-heading {
+  margin: 0;
+}
+
+/* Floating Technology Canvas */
+
 .tech-canvas {
   position: relative;
   width: 100%;
   max-width: 1000px;
   min-height: 550px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 4rem;
 }
 
-/* Minimal Floating Pill */
+/* Technology Pills */
+
 .tech-pill {
   position: absolute;
+
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+
   padding: 0.6rem 1.2rem;
+
   background: rgba(18, 14, 28, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+
   border: 1px solid rgba(168, 85, 247, 0.2);
   border-radius: 50px;
+
   cursor: default;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+
   animation: floatPill 6s ease-in-out infinite alternate;
+
   will-change: transform;
 }
 
 .tech-pill-icon {
   color: #c084fc;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .tech-pill-name {
@@ -903,7 +932,8 @@ textarea {
   letter-spacing: 0.05em;
 }
 
-/* Hover Effects */
+/* Hover */
+
 .tech-pill:hover {
   background: rgba(26, 15, 46, 0.8);
   border-color: #a855f7;
@@ -917,225 +947,147 @@ textarea {
   transform: rotate(-10deg) scale(1.1);
 }
 
-/* Continuous Floating Animation */
+/* Floating Animation */
+
 @keyframes floatPill {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(1deg); }
-  100% { transform: translateY(5px) rotate(-1deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(5px) rotate(-1deg);
+  }
 }
 
-/* --- Desktop Asymmetric Positioning --- */
-.pos-java    { top: 5%; left: 20%; }
-.pos-js      { top: 12%; right: 25%; }
-.pos-c       { top: 20%; left: 45%; }
-.pos-react   { top: 35%; left: 10%; }
-.pos-html    { top: 28%; right: 10%; }
-.pos-css     { top: 48%; left: 35%; }
-.pos-node    { top: 60%; left: 15%; }
-.pos-express { top: 55%; right: 30%; }
-.pos-spring  { top: 75%; right: 12%; }
-.pos-mongo   { top: 85%; left: 25%; }
-.pos-mysql   { top: 80%; left: 55%; }
-.pos-git     { top: 90%; right: 35%; }
+/* =========================
+   DESKTOP POSITIONS
+========================= */
 
-/* Ending Quote */
+.pos-java {
+  top: 5%;
+  left: 20%;
+}
+
+.pos-js {
+  top: 12%;
+  right: 25%;
+}
+
+.pos-c {
+  top: 20%;
+  left: 45%;
+}
+
+.pos-react {
+  top: 35%;
+  left: 10%;
+}
+
+.pos-html {
+  top: 28%;
+  right: 10%;
+}
+
+.pos-css {
+  top: 48%;
+  left: 35%;
+}
+
+.pos-node {
+  top: 60%;
+  left: 15%;
+}
+
+.pos-express {
+  top: 55%;
+  right: 30%;
+}
+
+.pos-spring {
+  top: 75%;
+  right: 12%;
+}
+
+.pos-mongo {
+  top: 85%;
+  left: 25%;
+}
+
+.pos-mysql {
+  top: 80%;
+  left: 55%;
+}
+
+.pos-git {
+  top: 90%;
+  right: 35%;
+}
+
+/* =========================
+   QUOTE
+========================= */
+
 .tech-quote {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  margin-top: 2rem;
+
   font-family: "DM Mono", monospace;
   font-size: 1.1rem;
+
   color: #c084fc;
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 2rem;
 }
 
-.quote-sparkle { color: #a855f7; }
-
-/* Responsive Mobile Layout */
-@media (max-width: 768px) {
-  .tech-canvas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    min-height: auto;
-    max-width: 100%;
-  }
-
-  .tech-pill {
-    position: relative; /* Disables absolute positioning for mobile */
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-  }
-}
-
-/* techstack */
-/* Desktop Asymmetric Alignments & Offsets */
-.align-left {
-  align-self: flex-start;
-  margin-left: 0;
-}
-
-.align-right {
-  align-self: flex-end;
-  margin-right: 0;
-}
-
-.align-left-offset {
-  align-self: flex-start;
-  margin-left: 7%;
-}
-
-.align-right-offset {
-  align-self: flex-end;
-  margin-right: 7%;
-}
-
-/* Group Header */
-.tech-group-header {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-.group-number-pill {
-  font-family: "DM Mono", monospace;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #c084fc;
-  background: rgba(168, 85, 247, 0.14);
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  padding: 0.22rem 0.65rem;
-  border-radius: 6px;
-}
-
-.group-category-title {
-  font-family: "DM Mono", monospace;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  color: #e4e4e7;
-}
-
-.group-header-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(168, 85, 247, 0.3) 0%, transparent 100%);
-}
-
-/* Technology Floating Items Grid */
-.tech-items-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.1rem;
-}
-
-.tech-item-chip {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.85rem 1.4rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: default;
-}
-
-.tech-item-chip:hover {
-  background: rgba(168, 85, 247, 0.12);
-  border-color: rgba(168, 85, 247, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(168, 85, 247, 0.25);
-}
-
-.chip-icon-box {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: rgba(168, 85, 247, 0.12);
-  border: 1px solid rgba(168, 85, 247, 0.25);
-  color: #c084fc;
-  transition: all 0.3s ease;
-}
-
-.tech-item-chip:hover .chip-icon-box {
-  background: rgba(168, 85, 247, 0.28);
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-}
-
-.chip-text-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.chip-name {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #ffffff;
-}
-
-.chip-tag {
-  font-family: "DM Mono", monospace;
-  font-size: 0.68rem;
-  color: #9ca3af;
-  margin-top: 1px;
-}
-
-/* Ending Quote Banner */
-.tech-quote-banner {
-  margin-top: 5.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1.8rem 2.5rem;
-  background: rgba(18, 14, 28, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(168, 85, 247, 0.25);
-  border-radius: 14px;
-  max-width: 620px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(168, 85, 247, 0.12);
-}
-
-.quote-sparkle-ring {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  color: #c084fc;
-}
-
-.quote-text {
-  font-family: "DM Mono", monospace;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  font-weight: 500;
-  color: #f3e8ff;
-  letter-spacing: 0.06em;
-  text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+.tech-quote p {
   margin: 0;
 }
 
-/* Mobile & Tablet Responsiveness for Tech Stack */
+.quote-sparkle {
+  color: #a855f7;
+}
+
+/* =========================
+   GLOW BACKGROUND
+========================= */
+
+.tech-glow-bg {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+}
+
+.tech-glow-1 {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  left: -150px;
+  background: #7c3aed;
+}
+
+.tech-glow-2 {
+  width: 350px;
+  height: 350px;
+  bottom: 10%;
+  right: -150px;
+  background: #a855f7;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 768px) {
   .tech-section {
     padding: 100px 5vw 80px;
@@ -1145,25 +1097,31 @@ textarea {
     margin-bottom: 2.5rem;
   }
 
-  .tech-group-card {
-    max-width: 100%;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding: 1.4rem 1.4rem;
+  .tech-canvas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    min-height: auto;
   }
 
-  .tech-item-chip {
-    width: 100%;
-    justify-content: flex-start;
+  .tech-pill {
+    position: relative;
+
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
   }
 
-  .tech-quote-banner {
-    margin-top: 3.5rem;
-    padding: 1.4rem 1.6rem;
-    flex-direction: column;
+  .tech-quote {
+    font-size: 0.85rem;
     text-align: center;
+    margin-top: 3rem;
   }
 }
+
 
 /* =========================
    EXPERIENCE
