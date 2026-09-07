@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import "./Projects.css";
 
 // Import your local screenshots exactly as requested
 import rizzChatImg from '../assets/projects/rizzchat.png';
-import bankingImg from '../assets/projects/banking.png';
+import bankingImg from '../assets/projects/banking.jpeg';
 import speedoTypeImg from '../assets/projects/speedotype.png';
 
 // Reusable project data array (Update empty strings with your actual URLs and tech)
@@ -85,82 +86,77 @@ const Projects = () => {
   const currentProject = projectsData[currentIndex];
 
   return (
-    <section 
-      id="projects" 
-      className="w-full min-h-screen bg-black text-white py-20 flex items-center justify-center overflow-hidden"
-    >
+    <section id="projects" className="projects-section">
       <div 
-        className="max-w-7xl mx-auto px-6 lg:px-12 w-full flex flex-col lg:flex-row items-center gap-12"
+        className="projects-container"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEndAction}
       >
-        
         {/* Left Side: Project Info & Controls */}
-        <div className="w-full lg:w-1/2 flex flex-col space-y-8 z-10">
+        <div className="project-content">
           
           {/* Counter */}
-          <div className="text-purple-500 font-mono text-2xl font-bold tracking-widest">
+          <div className="project-counter">
             {String(currentIndex + 1).padStart(2, '0')} / {String(projectsData.length).padStart(2, '0')}
           </div>
 
           {/* Text Content */}
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+          <div className="project-text-group">
+            <h2 className="project-title">
               {currentProject.title}
             </h2>
-            <h3 className="text-xl md:text-2xl text-gray-400 font-medium">
+            <h3 className="project-subtitle">
               {currentProject.subtitle}
             </h3>
-            <p className="text-gray-300 text-lg leading-relaxed max-w-lg">
+            <p className="project-description">
               {currentProject.description}
             </p>
           </div>
 
           {/* Tech Stack Pills */}
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="project-tech">
             {currentProject.technologies.map((tech, index) => (
-              <span 
-                key={index} 
-                className="px-4 py-2 rounded-full border border-purple-500/30 bg-purple-900/20 text-purple-300 text-sm font-semibold"
-              >
+              <span key={index} className="tech-pill">
                 {tech}
               </span>
             ))}
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-6 pt-6">
+          <div className="project-actions">
             <a 
               href={currentProject.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-8 py-3 rounded-md font-bold transition-all duration-300"
+              className="btn btn-primary"
             >
-              LIVE DEMO <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <span>LIVE DEMO</span>
+              <span className="btn-arrow">→</span>
             </a>
             <a 
               href={currentProject.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 border border-gray-500 hover:border-white text-gray-300 hover:text-white px-8 py-3 rounded-md font-bold transition-all duration-300"
+              className="btn btn-secondary"
             >
-              GITHUB <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <span>GITHUB</span>
+              <span className="btn-arrow">→</span>
             </a>
           </div>
 
           {/* Carousel Arrows */}
-          <div className="flex items-center gap-4 pt-8">
+          <div className="project-controls">
             <button 
               onClick={handlePrev}
-              className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-600 hover:border-purple-500 hover:text-purple-500 transition-colors duration-300"
+              className="control-btn"
               aria-label="Previous Project"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
             <button 
               onClick={handleNext}
-              className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-600 hover:border-purple-500 hover:text-purple-500 transition-colors duration-300"
+              className="control-btn"
               aria-label="Next Project"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -169,36 +165,38 @@ const Projects = () => {
         </div>
 
         {/* Right Side: Premium Image Showcase */}
-        <div className="w-full lg:w-1/2 relative flex items-center justify-center">
+        <div className="project-image-wrapper">
           {/* Smooth Fade/Slide Transition Wrapper */}
           <div 
-            key={currentIndex} // Forces re-render for CSS animations
-            className="w-full animate-fade-in"
+            key={currentIndex} 
+            className="project-slide"
           >
             <a 
               href={currentProject.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block relative group rounded-xl overflow-hidden shadow-[0_0_40px_rgba(168,85,247,0.15)] border border-gray-800 cursor-pointer"
+              className="browser-mockup"
             >
               {/* Overlay for Premium Browser Feel */}
-              <div className="absolute top-0 left-0 w-full h-8 bg-gray-900 border-b border-gray-800 flex items-center px-4 gap-2 z-10 opacity-70 group-hover:opacity-100 transition-opacity">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              <div className="browser-header">
+                <span className="dot dot-red"></span>
+                <span className="dot dot-yellow"></span>
+                <span className="dot dot-green"></span>
               </div>
               
-              <img 
-                src={currentProject.image} 
-                alt={`${currentProject.title} preview`}
-                className="w-full h-auto object-cover mt-8 transform transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-              />
-              
-              {/* Subtle hover overlay to indicate clickability */}
-              <div className="absolute inset-0 bg-purple-900/0 group-hover:bg-purple-900/20 transition-colors duration-500 flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-black/80 text-white font-bold py-3 px-6 rounded-full backdrop-blur-sm shadow-xl">
-                  Click to View Live
-                </span>
+              <div className="browser-content">
+                <img 
+                  src={currentProject.image} 
+                  alt={`${currentProject.title} preview`}
+                  className="project-image"
+                />
+                
+                {/* Subtle hover overlay */}
+                <div className="image-overlay">
+                  <span className="overlay-pill">
+                    Click to View Live
+                  </span>
+                </div>
               </div>
             </a>
           </div>
