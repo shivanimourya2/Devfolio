@@ -14,8 +14,8 @@ const projectsData = [
     description: "A seamless real-time messaging platform designed for instant communication and user connectivity.",
     technologies: ["React", "Node.js", "Socket.io", "Tailwind CSS"], 
     image: rizzChatImg,
-    liveUrl: "https://your-rizzchat-live-url.com",
-    githubUrl: "https://github.com/shivanimourya2/rizzchat"
+    liveUrl: "https://rizz-chatt.web.app/",
+    githubUrl: "https://github.com/shivanimourya2/RizzChat-FE"
   },
   {
     title: "Virtual Banking System",
@@ -23,8 +23,8 @@ const projectsData = [
     description: "A comprehensive virtual banking interface showcasing secure transactions, user dashboards, and financial data management.",
     technologies: ["React", "Express", "MongoDB", "JWT"],
     image: bankingImg,
-    liveUrl: "https://your-banking-live-url.com",
-    githubUrl: "https://github.com/shivanimourya2/banking-system"
+   
+    githubUrl: "https://github.com/shivanimourya2/Virtual-banking-system.git"
   },
   {
     title: "SpeedoType",
@@ -32,8 +32,8 @@ const projectsData = [
     description: "An interactive typing speed test application that tracks WPM, accuracy, and provides real-time performance feedback.",
     technologies: ["React", "Vite", "CSS3"],
     image: speedoTypeImg,
-    liveUrl: "https://your-speedotype-live-url.com",
-    githubUrl: "https://github.com/shivanimourya2/speedotype"
+    liveUrl: "https://speedo-type-eosin.vercel.app/",
+    githubUrl: "https://github.com/shivanimourya2/SpeedoType.git"
   }
 ];
 
