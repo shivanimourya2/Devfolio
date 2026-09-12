@@ -20,6 +20,14 @@ function Experience() {
           <p>E-Cell, IIT Bombay</p>
         </div>
       </div>
+      <div className="experience-item">
+        <span>2026</span>
+        <div>
+          <h3>Open Source Connect India </h3>
+          <p>OSCI’26 Contributor</p>
+        </div>
+
+      </div>
     </section>
   );
 }

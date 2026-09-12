@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import "./Projects.css";
+import './Projects.css';
 
-// Import your local screenshots exactly as requested
 import rizzChatImg from '../assets/projects/rizzchat.png';
 import bankingImg from '../assets/projects/banking.jpeg';
 import speedoTypeImg from '../assets/projects/speedotype.png';
 
-// Reusable project data array (Update empty strings with your actual URLs and tech)
 const projectsData = [
   {
-    title: "RizzChat",
-    subtitle: "Real-Time Chat Application",
-    description: "A seamless real-time messaging platform designed for instant communication and user connectivity.",
-    technologies: ["React", "Node.js", "Socket.io", "Tailwind CSS"], 
+    title: "Rizz chat",
+   
+    description: "A seamless real-time messaging platform designed for instant communication, dynamic chatrooms, and fluid user connectivity.",
+    technologies: ["React", "Node.js", "Socket.io", "CSS"],
     image: rizzChatImg,
     liveUrl: "https://rizz-chatt.web.app/",
     githubUrl: "https://github.com/shivanimourya2/RizzChat-FE"
@@ -20,16 +18,15 @@ const projectsData = [
   {
     title: "Virtual Banking System",
     subtitle: "Secure Financial Platform",
-    description: "A comprehensive virtual banking interface showcasing secure transactions, user dashboards, and financial data management.",
-    technologies: ["React", "Express", "MongoDB", "JWT"],
+    description: "A comprehensive virtual banking interface showcasing secure transactions, intuitive user dashboards, and real-time financial data management.",
+    technologies: ["Java", "Springboot", "SQL"],
     image: bankingImg,
-   
     githubUrl: "https://github.com/shivanimourya2/Virtual-banking-system.git"
   },
   {
     title: "SpeedoType",
     subtitle: "Typing Speed Test",
-    description: "An interactive typing speed test application that tracks WPM, accuracy, and provides real-time performance feedback.",
+    description: "An interactive typing speed test application that tracks WPM, accuracy metrics, and provides instant real-time performance feedback.",
     technologies: ["React", "Vite", "CSS3"],
     image: speedoTypeImg,
     liveUrl: "https://speedo-type-eosin.vercel.app/",
@@ -39,21 +36,27 @@ const projectsData = [
 
 const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState('next');
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
-  // Minimum distance (in px) to register a swipe
   const minSwipeDistance = 50;
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === projectsData.length - 1 ? 0 : prevIndex + 1));
+    setSlideDirection('next');
+    setCurrentIndex((prev) => (prev === projectsData.length - 1 ? 0 : prev + 1));
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1));
+    setSlideDirection('prev');
+    setCurrentIndex((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1));
   };
 
-  // Keyboard navigation support
+  const goToSlide = (index) => {
+    setSlideDirection(index > currentIndex ? 'next' : 'prev');
+    setCurrentIndex(index);
+  };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight') handleNext();
@@ -63,7 +66,6 @@ const Projects = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Mobile swipe support
   const onTouchStart = (e) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
@@ -76,129 +78,168 @@ const Projects = () => {
   const onTouchEndAction = () => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) handleNext();
-    if (isRightSwipe) handlePrev();
+    if (distance > minSwipeDistance) handleNext();
+    if (distance < -minSwipeDistance) handlePrev();
   };
 
   const currentProject = projectsData[currentIndex];
+  const formattedCurrent = String(currentIndex + 1).padStart(2, '0');
+  const formattedTotal = String(projectsData.length).padStart(2, '0');
 
   return (
-    <section id="projects" className="projects-section">
-      <div 
-        className="projects-container"
+    <section id="projects" className="editorial-projects-section">
+      <div className="editorial-projects-header">
+        <div className="section-label">
+          <span className="label-dot"></span>
+          <span>FEATURED WORK</span>
+        </div>
+        <h2 className="section-heading">REACT PROJECTS</h2>
+      </div>
+
+      <div
+        className="editorial-projects-stage"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEndAction}
       >
-        {/* Left Side: Project Info & Controls */}
-        <div className="project-content">
-          
-          {/* Counter */}
-          <div className="project-counter">
-            {String(currentIndex + 1).padStart(2, '0')} / {String(projectsData.length).padStart(2, '0')}
-          </div>
+        <div key={currentIndex} className={`editorial-project-card slide-${slideDirection}`}>
+          {/* Left Column: Project Info */}
+          <div className="editorial-info-col">
+            <div className="project-number-badge">
+              <span className="current-num">{formattedCurrent}</span>
+              <span className="num-divider">/</span>
+              <span className="total-num">{formattedTotal}</span>
+            </div>
 
-          {/* Text Content */}
-          <div className="project-text-group">
-            <h2 className="project-title">
-              {currentProject.title}
-            </h2>
-            <h3 className="project-subtitle">
-              {currentProject.subtitle}
-            </h3>
-            <p className="project-description">
-              {currentProject.description}
-            </p>
-          </div>
+            <div className="project-meta-wrapper">
+              <h3 className="editorial-project-title">{currentProject.title}</h3>
+              <p className="editorial-project-subtitle">{currentProject.subtitle}</p>
+              <p className="editorial-project-desc">{currentProject.description}</p>
+            </div>
 
-          {/* Tech Stack Pills */}
-          <div className="project-tech">
-            {currentProject.technologies.map((tech, index) => (
-              <span key={index} className="tech-pill">
-                {tech}
-              </span>
-            ))}
-          </div>
+            <div className="editorial-tech-pills">
+              {currentProject.technologies.map((tech, idx) => (
+                <span key={idx} className="editorial-tech-tag">
+                  {tech}
+                </span>
+              ))}
+            </div>
 
-          {/* Action Buttons */}
-          <div className="project-actions">
-            <a 
-              href={currentProject.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              <span>LIVE DEMO</span>
-              <span className="btn-arrow">→</span>
-            </a>
-            <a 
-              href={currentProject.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-            >
-              <span>GITHUB</span>
-              <span className="btn-arrow">→</span>
-            </a>
-          </div>
+            <div className="editorial-action-buttons">
+              {currentProject.liveUrl ? (
+                <a
+                  href={currentProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="editorial-btn editorial-btn-primary"
+                >
+                  <span>VIEW LIVE PROJECT</span>
+                  <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              ) : (
+                <button className="editorial-btn editorial-btn-primary disabled" disabled title="Live preview currently unavailable">
+                  <span>VIEW LIVE PROJECT</span>
+                  <span className="disabled-tag">(UNAVAILABLE)</span>
+                </button>
+              )}
 
-          {/* Carousel Arrows */}
-          <div className="project-controls">
-            <button 
-              onClick={handlePrev}
-              className="control-btn"
-              aria-label="Previous Project"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button 
-              onClick={handleNext}
-              className="control-btn"
-              aria-label="Next Project"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-        </div>
+              <a
+                href={currentProject.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="editorial-btn editorial-btn-secondary"
+              >
+                <span>GITHUB</span>
+                <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
 
-        {/* Right Side: Premium Image Showcase */}
-        <div className="project-image-wrapper">
-          {/* Smooth Fade/Slide Transition Wrapper */}
-          <div 
-            key={currentIndex} 
-            className="project-slide"
-          >
-            <a 
-              href={currentProject.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="browser-mockup"
-            >
-              {/* Overlay for Premium Browser Feel */}
-              <div className="browser-header">
-                <span className="dot dot-red"></span>
-                <span className="dot dot-yellow"></span>
-                <span className="dot dot-green"></span>
+            {/* Navigation Arrows */}
+            <div className="editorial-nav-controls">
+              <button
+                onClick={handlePrev}
+                className="editorial-nav-arrow"
+                aria-label="Previous project"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              <div className="editorial-dots">
+                {projectsData.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goToSlide(i)}
+                    className={`dot-indicator ${i === currentIndex ? 'active' : ''}`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
               </div>
-              
-              <div className="browser-content">
-                <img 
-                  src={currentProject.image} 
-                  alt={`${currentProject.title} preview`}
-                  className="project-image"
-                />
-                
-                {/* Subtle hover overlay */}
-                <div className="image-overlay">
-                  <span className="overlay-pill">
-                    Click to View Live
-                  </span>
-                </div>
-              </div>
-            </a>
+
+              <button
+                onClick={handleNext}
+                className="editorial-nav-arrow"
+                aria-label="Next project"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Screenshot Visual Focal Point */}
+          <div className="editorial-visual-col">
+            <div className="image-frame-container">
+              {currentProject.liveUrl ? (
+                <a
+                  href={currentProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="editorial-image-anchor"
+                >
+                  <img
+                    src={currentProject.image}
+                    alt={`${currentProject.title} screenshot`}
+                    className="editorial-project-image"
+                  />
+                  <div className="image-hover-overlay">
+                    <span className="hover-badge">
+                      <span>View Live Demo</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                </a>
+              ) : (
+                <a
+                  href={currentProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="editorial-image-anchor"
+                >
+                  <img
+                    src={currentProject.image}
+                    alt={`${currentProject.title} screenshot`}
+                    className="editorial-project-image"
+                  />
+                  <div className="image-hover-overlay">
+                    <span className="hover-badge">
+                      <span>View Repository</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
