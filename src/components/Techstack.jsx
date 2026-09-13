@@ -1,163 +1,89 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Code,
-  Terminal,
-  Cpu,
-  Globe,
-  FileCode,
-  Layers,
-  Server,
-  Workflow,
-  Flame,
-  Database,
-  Box,
-  GitBranch,
-  Sparkles,
-} from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const TECH_DATA = [
-  // Group 01
-  { name: "Java", icon: Code, group: 1, posClass: "pos-java", delay: "0s" },
-  { name: "JavaScript", icon: Terminal, group: 1, posClass: "pos-js", delay: "1.2s" },
-  { name: "C", icon: Cpu, group: 1, posClass: "pos-c", delay: "0.5s" },
-
-  // Group 02
-  { name: "React", icon: Globe, group: 2, posClass: "pos-react", delay: "0.8s" },
-  { name: "HTML5", icon: FileCode, group: 2, posClass: "pos-html", delay: "2.1s" },
-  { name: "CSS3", icon: Layers, group: 2, posClass: "pos-css", delay: "1.5s" },
-
-  // Group 03
-  { name: "Node.js", icon: Server, group: 3, posClass: "pos-node", delay: "0.3s" },
-  { name: "Express.js", icon: Workflow, group: 3, posClass: "pos-express", delay: "1.8s" },
-  { name: "Spring Boot", icon: Flame, group: 3, posClass: "pos-spring", delay: "2.5s" },
-
-  // Group 04
-  { name: "MongoDB", icon: Database, group: 4, posClass: "pos-mongo", delay: "1.1s" },
-  { name: "MySQL", icon: Box, group: 4, posClass: "pos-mysql", delay: "0.7s" },
-  { name: "Git", icon: GitBranch, group: 4, posClass: "pos-git", delay: "2.2s" },
+import { useState } from "react";
+import "./Techstack.css";
+const technologies = [
+  { name: "Java", icon: "☕", position: "java" },
+  { name: "JavaScript", icon: "JS", position: "javascript" },
+  { name: "C", icon: "C", position: "c" },
+  { name: "React", icon: "⚛", position: "react" },
+  { name: "HTML5", icon: "◇", position: "html" },
+  { name: "CSS3", icon: "▱", position: "css" },
+  { name: "Node.js", icon: "⬡", position: "node" },
+  { name: "Express.js", icon: "⌘", position: "express" },
+  { name: "Spring Boot", icon: "♨", position: "spring" },
+  { name: "MongoDB", icon: "◆", position: "mongo" },
+  { name: "MySQL", icon: "◇", position: "mysql" },
+  { name: "Python", icon: "Py", position: "python" },
+  { name: "Git", icon: "⑂", position: "git" },
+  { name: "GitHub", icon: "◉", position: "github" },
 ];
 
-export default function TechStack() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header animation
-      gsap.from(".tech-header", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      // Tech pills animation
-      [1, 2, 3, 4].forEach((groupNum) => {
-        gsap.from(`.tech-group-${groupNum}`, {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-          },
-          y: 60,
-          opacity: 0,
-          scale: 0.8,
-          stagger: 0.15,
-          duration: 1.2,
-          ease: "back.out(1.2)",
-          delay: (groupNum - 1) * 0.3,
-        });
-      });
-
-      // Quote animation
-      gsap.from(".tech-quote", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+function TechStack() {
+  const [showStack, setShowStack] = useState(false);
 
   return (
-    <section
-      id="techstack"
-      className="tech-section"
-      ref={sectionRef}
-    >
-      <div className="tech-glow-bg tech-glow-1" aria-hidden="true" />
-      <div className="tech-glow-bg tech-glow-2" aria-hidden="true" />
+    <section className="techstack-section" id="techstack">
 
-      <div className="tech-container">
+      {/* Heading */}
+      <div className="techstack-heading">
+        <span className="section-number">
+          02 — TECHNICAL STACK
+        </span>
 
-        {/* Header */}
-        <div className="tech-header text-center">
-          <p className="section-label">
-            02 — TECHNICAL STACK
-          </p>
+        <h2>Technologies & Tools</h2>
+      </div>
 
-          <h2 className="tech-heading">
-            Technologies &amp;{" "}
-            <span className="text-gradient">Tools</span>
-          </h2>
+      {/* Explore Button */}
+      <div className="techstack-action">
+        <button
+          className="techstack-button"
+          onClick={() => setShowStack(!showStack)}
+        >
+          <span>
+            {showStack ? "Hide my stack" : "Explore my stack"}
+          </span>
+
+          <span className="button-arrow">
+            {showStack ? "↑" : "↓"}
+          </span>
+        </button>
+      </div>
+
+      {/* Circular Tech Stack */}
+      <div
+        className={`techstack-container ${
+          showStack ? "show-stack" : ""
+        }`}
+      >
+
+        {/* Center Circle */}
+        <div className="techstack-center">
+          <span>&lt;/&gt;</span>
         </div>
+
+        {/* Circular Orbit */}
+        <div className="techstack-orbit"></div>
 
         {/* Technologies */}
-        <div className="tech-canvas">
-          {TECH_DATA.map((tech, idx) => {
-            const Icon = tech.icon;
+        {technologies.map((tech, index) => (
+          <div
+            key={tech.name}
+            className={`tech-pill ${tech.position}`}
+            style={{
+              animationDelay: `${index * 0.20}s`,
+            }}
+          >
+            <span className="tech-icon">
+              {tech.icon}
+            </span>
 
-            return (
-              <div
-                key={idx}
-                className={`tech-pill tech-group-${tech.group} ${tech.posClass}`}
-                style={{
-                  animationDelay: tech.delay,
-                }}
-              >
-                <Icon
-                  size={18}
-                  className="tech-pill-icon"
-                />
-
-                <span className="tech-pill-name">
-                  {tech.name}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Quote */}
-        <div className="tech-quote">
-          <Sparkles
-            size={16}
-            className="quote-sparkle"
-          />
-
-          <p>
-            "Always learning. Always building."
-          </p>
-
-          <Sparkles
-            size={16}
-            className="quote-sparkle"
-          />
-        </div>
+            <span>{tech.name}</span>
+          </div>
+        ))}
 
       </div>
+
     </section>
   );
 }
+
+export default TechStack;
