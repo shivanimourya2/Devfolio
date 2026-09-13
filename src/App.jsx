@@ -1,3 +1,5 @@
+import AnimatedBackground from "./components/AnimatedBackground";
+import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Hero from "./components/Hero";
@@ -10,6 +12,8 @@ import Contact from "./components/Contact";
 function App() {
   return (
     <>
+    <AnimatedBackground/>
+    <CustomCursor />
     <Navbar/>
     <main>
       <Hero/>
@@ -19,6 +23,7 @@ function App() {
       <Experience/>
       <Connect/>
       <Contact/>
+
     </main>
     </>
   );

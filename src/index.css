@@ -92,18 +92,17 @@ textarea {
   color: white;
   cursor: pointer;
 }
-
 /* =========================
    HERO SECTION
 ========================= */
 
 .hero {
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 130px 6vw 80px;
+  padding: 100px 6vw 60px;
   overflow: hidden;
   background: #050505;
 }
@@ -156,7 +155,7 @@ textarea {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 4.5rem;
+  gap: 3rem;
 }
 
 /* -------------------------
@@ -177,7 +176,7 @@ textarea {
   border-radius: 9999px;
   background: rgba(168, 85, 247, 0.08);
   border: 1px solid rgba(168, 85, 247, 0.22);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-live-dot {
@@ -247,7 +246,7 @@ textarea {
 
 /* Dynamic Animated Role Block */
 .hero-role-block {
-  margin-top: 1.6rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -289,7 +288,7 @@ textarea {
 /* Description */
 .hero-description {
   max-width: 520px;
-  margin-top: 1.4rem;
+  margin-top: 1rem;
   font-size: clamp(0.95rem, 1.1vw, 1.05rem);
   line-height: 1.7;
   color: #9ca3af;
@@ -300,7 +299,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  margin-top: 2.4rem;
+  margin-top: 1.8rem;
   flex-wrap: wrap;
 }
 
@@ -371,7 +370,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  margin-top: 2.2rem;
+  margin-top: 1.5rem;
 }
 
 .hero-social-item {
@@ -811,19 +810,15 @@ textarea {
 ========================= */
 
 .section {
-  min-height: 80vh;
-
-  padding: 140px 8vw;
-
+  min-height: auto;
+  padding: 100px 6vw;
   border-top: 1px solid #151515;
 }
 
 .section h2 {
   max-width: 1000px;
-
   font-size: clamp(3rem, 7vw, 7rem);
   line-height: 0.95;
-
   letter-spacing: -0.05em;
 }
 
@@ -833,255 +828,608 @@ textarea {
 
 .section-text {
   max-width: 750px;
-
-  margin-top: 3rem;
-
+  margin-top: 2rem;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   line-height: 1.7;
-
   color: #888;
 }
 /* =========================
    TECHNICAL STACK SECTION
 ========================= */
-
-.tech-section {
+.techstack-section {
   position: relative;
-  min-height: 100vh;
-  padding: 130px 6vw 120px;
-  background: #050505;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  
+  padding: 100px 8% 80px;
   overflow: hidden;
 }
+/* =========================
+   TECHNOLOGY BRAND COLORS
+========================= */
 
-.tech-container {
+.java .tech-icon {
+  color: #f89820;
+}
+
+.javascript .tech-icon {
+  color: #f7df1e;
+}
+
+.c .tech-icon {
+  color: #5c8dbc;
+}
+
+.react .tech-icon {
+  color: #61dafb;
+}
+
+.html .tech-icon {
+  color: #e34f26;
+}
+
+.css .tech-icon {
+  color: #1572b6;
+}
+
+.node .tech-icon {
+  color: #68a063;
+}
+
+.express .tech-icon {
+  color: #ffffff;
+}
+
+.spring .tech-icon {
+  color: #6db33f;
+}
+
+.mongo .tech-icon {
+  color: #47a248;
+}
+
+.mysql .tech-icon {
+  color: #4479a1;
+}
+
+.python .tech-icon {
+  color: #3776ab;
+}
+
+.git .tech-icon {
+  color: #f05032;
+}
+
+.github .tech-icon {
+  color: #ffffff;
+}
+/* =========================
+   HEADING
+========================= */
+.techstack-heading {
+  text-align: center;
   position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   z-index: 2;
 }
 
-/* Header */
-
-.tech-header {
-  text-align: center;
-  margin: 0 auto 4rem;
+.section-number {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #ffffff;
+  font-family: monospace;
 }
 
-.tech-header .section-label {
-  margin-bottom: 1rem;
-}
-
-.tech-heading {
+.techstack-heading h2 {
   margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
 }
+/* =========================
+   BUTTON
+========================= */
 
-/* Floating Technology Canvas */
+.techstack-action {
+  display: flex;
+  justify-content: center;
 
-.tech-canvas {
   position: relative;
-  width: 100%;
-  max-width: 1000px;
-  min-height: 550px;
-  margin: 0 auto 4rem;
+  z-index: 5;
+
+  margin-top: 35px;
+  margin-bottom: 25px;
 }
 
-/* Technology Pills */
+.techstack-button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 13px 22px;
+
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 30px;
+
+  background: rgba(10, 7, 15, 0.8);
+
+  color: #e9d5ff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+
+  backdrop-filter: blur(10px);
+}
+
+.techstack-button:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(168, 85, 247, 0.8);
+
+  background: rgba(139, 92, 246, 0.08);
+
+  box-shadow:
+    0 8px 30px rgba(139, 92, 246, 0.12);
+}
+
+.button-arrow {
+  font-size: 17px;
+}
+
+/* =========================
+   TECHNOLOGY AREA
+========================= */
+.techstack-container {
+  position: relative;
+
+  width: 100%;
+  max-width: 1100px;
+
+  /* IMPORTANT */
+  height: 0;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  transition: height 0.8s ease;
+}
+
+/* When opened, create space */
+.techstack-container.show-stack {
+  height: 560px;
+}
+
+/* =========================
+   TECH PILLS
+========================= */
+
 
 .tech-pill {
   position: absolute;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 10px;
 
-  padding: 0.6rem 1.2rem;
+  padding: 9px 18px;
 
-  background: rgba(18, 14, 28, 0.4);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 30px;
+
+  background: rgba(10, 7, 15, 0.75);
+
+  color: #d8d8d8;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 0 20px rgba(139, 92, 246, 0.03),
+    inset 0 0 15px rgba(139, 92, 246, 0.02);
+
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 
-  border: 1px solid rgba(168, 85, 247, 0.2);
-  border-radius: 50px;
-
-  cursor: default;
-
-  transition:
-    background 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
-
-  animation: floatPill 6s ease-in-out infinite alternate;
-
-  will-change: transform;
+  /* Initially hidden */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(25px) scale(0.92);
 }
 
-.tech-pill-icon {
-  color: #c084fc;
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
+/* Only animate after clicking */
+
+.show-stack .tech-pill {
+  visibility: visible;
+
+  animation: techReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.tech-pill-name {
-  font-family: "DM Mono", monospace;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #e4e4e7;
-  letter-spacing: 0.05em;
-}
-
-/* Hover */
-
-.tech-pill:hover {
-  background: rgba(26, 15, 46, 0.8);
-  border-color: #a855f7;
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
-  transform: translateY(-8px) scale(1.05) !important;
-  z-index: 10;
-}
-
-.tech-pill:hover .tech-pill-icon {
-  color: #ffffff;
-  transform: rotate(-10deg) scale(1.1);
-}
-
-/* Floating Animation */
-
-@keyframes floatPill {
+@keyframes techReveal {
   0% {
-    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+    transform: translateY(25px) scale(0.92);
+    filter: blur(5px);
   }
 
-  50% {
-    transform: translateY(-12px) rotate(1deg);
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+    filter: blur(0);
   }
 
   100% {
-    transform: translateY(5px) rotate(-1deg);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
 /* =========================
-   DESKTOP POSITIONS
+   ICON
 ========================= */
 
-.pos-java {
-  top: 5%;
-  left: 20%;
+.tech-icon {
+  color: #a855f7;
+  font-size: 14px;
+  font-family: monospace;
+}
+/* =========================
+   CIRCULAR TECH STACK
+========================= */
+
+.techstack-container {
+  position: relative;
+
+  width: 650px;
+  height: 650px;
+
+  margin: 0 auto;
+
+  overflow: visible;
+
+  opacity: 0;
+  transform: scale(0.8);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s ease;
 }
 
-.pos-js {
-  top: 12%;
-  right: 25%;
+.techstack-container.show-stack {
+  opacity: 1;
+  transform: scale(1);
+
+  pointer-events: auto;
 }
 
-.pos-c {
-  top: 20%;
-  left: 45%;
-}
-
-.pos-react {
-  top: 35%;
-  left: 10%;
-}
-
-.pos-html {
-  top: 28%;
-  right: 10%;
-}
-
-.pos-css {
-  top: 48%;
-  left: 35%;
-}
-
-.pos-node {
-  top: 60%;
-  left: 15%;
-}
-
-.pos-express {
-  top: 55%;
-  right: 30%;
-}
-
-.pos-spring {
-  top: 75%;
-  right: 12%;
-}
-
-.pos-mongo {
-  top: 85%;
-  left: 25%;
-}
-
-.pos-mysql {
-  top: 80%;
-  left: 55%;
-}
-
-.pos-git {
-  top: 90%;
-  right: 35%;
-}
 
 /* =========================
-   QUOTE
+   CENTER
 ========================= */
 
-.tech-quote {
+.techstack-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 100px;
+  height: 100px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
 
-  margin-top: 2rem;
+  background: rgba(15, 8, 25, 0.95);
 
-  font-family: "DM Mono", monospace;
-  font-size: 1.1rem;
+  border: 1px solid rgba(168, 85, 247, 0.7);
 
+  box-shadow:
+    0 0 20px rgba(139, 92, 246, 0.25),
+    0 0 50px rgba(139, 92, 246, 0.12);
+
+  z-index: 5;
+}
+
+.techstack-center span {
   color: #c084fc;
 
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 28px;
+
+  font-family: monospace;
+
+  text-shadow:
+    0 0 15px rgba(192, 132, 252, 0.8);
 }
 
-.tech-quote p {
-  margin: 0;
+
+/* =========================
+   ORBIT
+========================= */
+
+.techstack-orbit {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 470px;
+  height: 470px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(168, 85, 247, 0.25);
+
+  box-shadow:
+    0 0 40px rgba(139, 92, 246, 0.06),
+    inset 0 0 40px rgba(139, 92, 246, 0.04);
 }
 
-.quote-sparkle {
-  color: #a855f7;
+
+/* =========================
+   TECH PILLS
+========================= */
+
+.tech-pill {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border-radius: 30px;
+
+  background: rgba(10, 8, 15, 0.9);
+
+  border: 1px solid rgba(168, 85, 247, 0.35);
+
+  color: #e5e5e5;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  backdrop-filter: blur(10px);
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.3);
+
+  z-index: 3;
+}
+/* TOP */
+
+.java {
+  top: 5%;
+  left: 50%;
+}
+
+.javascript {
+  top: 10%;
+  left: 70%;
+}
+
+
+/* UPPER RIGHT */
+
+.c {
+  top: 25%;
+  left: 88%;
+}
+
+.react {
+  top: 47%;
+  left: 96%;
+}
+
+
+/* LOWER RIGHT */
+
+.html {
+  top: 68%;
+  left: 88%;
+}
+
+.css {
+  top: 85%;
+  left: 70%;
+}
+
+
+/* BOTTOM */
+
+.node {
+  top: 95%;
+  left: 50%;
+}
+
+.express {
+  top: 91%;
+  left: 32%;
+}
+
+
+/* LOWER LEFT */
+
+.spring {
+  top: 78%;
+  left: 15%;
+}
+
+.mongo {
+  top: 60%;
+  left: 7%;
+}
+
+
+/* LEFT */
+
+.mysql {
+  top: 40%;
+  left: 4%;
+}
+
+.python {
+  top: 23%;
+  left: 12%;
+}
+
+
+/* UPPER LEFT */
+
+.git {
+  top: 10%;
+  left: 30%;
+}
+
+.github {
+  top: 18%;
+  left: 18%;
 }
 
 /* =========================
-   GLOW BACKGROUND
+   ONE BY ONE ANIMATION
 ========================= */
 
-.tech-glow-bg {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
+.show-stack .tech-pill {
+  animation:
+    techReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
 }
 
-.tech-glow-1 {
-  width: 400px;
-  height: 400px;
-  top: 10%;
-  left: -150px;
-  background: #7c3aed;
+@keyframes techReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.3);
+
+    filter: blur(6px);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
 }
 
-.tech-glow-2 {
-  width: 350px;
-  height: 350px;
-  bottom: 10%;
-  right: -150px;
-  background: #a855f7;
+/* =========================
+   HOVER
+========================= */
+
+.tech-pill:hover {
+  border-color: rgba(168, 85, 247, 0.65);
+  color: #ffffff;
+
+  box-shadow:
+    0 0 25px rgba(139, 92, 246, 0.12),
+    inset 0 0 15px rgba(139, 92, 246, 0.05);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.techstack-action {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  z-index: 5;
+
+  margin-top: -5px;
+}
+
+.techstack-button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 13px 22px;
+
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 30px;
+
+  background: rgba(10, 7, 15, 0.8);
+
+  color: #e9d5ff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+
+  backdrop-filter: blur(10px);
+}
+
+.techstack-button:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(168, 85, 247, 0.8);
+
+  background: rgba(139, 92, 246, 0.08);
+
+  box-shadow:
+    0 8px 30px rgba(139, 92, 246, 0.12);
+}
+
+.button-arrow {
+  font-size: 17px;
+  transition: transform 0.3s ease;
+}
+
+.techstack-button:hover .button-arrow {
+  transform: translateY(3px);
 }
 
 /* =========================
@@ -1089,39 +1437,79 @@ textarea {
 ========================= */
 
 @media (max-width: 768px) {
-  .tech-section {
-    padding: 100px 5vw 80px;
+  .techstack-section {
+    padding: 80px 20px;
   }
 
-  .tech-header {
-    margin-bottom: 2.5rem;
-  }
-
-  .tech-canvas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-
-    min-height: auto;
+  .techstack-container {
+    height: auto;
+    min-height: 650px;
   }
 
   .tech-pill {
-    position: relative;
-
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
+    position: absolute;
   }
 
-  .tech-quote {
-    font-size: 0.85rem;
-    text-align: center;
-    margin-top: 3rem;
+  .java {
+    top: 5%;
+    left: 5%;
+  }
+
+  .javascript {
+    top: 13%;
+    right: 5%;
+  }
+
+  .c {
+    top: 22%;
+    left: 42%;
+  }
+
+  .react {
+    top: 32%;
+    left: 5%;
+  }
+
+  .html {
+    top: 32%;
+    right: 5%;
+  }
+
+  .css {
+    top: 43%;
+    left: 38%;
+  }
+
+  .node {
+    top: 53%;
+    left: 5%;
+  }
+
+  .express {
+    top: 53%;
+    right: 5%;
+  }
+
+  .spring {
+    top: 63%;
+    right: 5%;
+  }
+
+  .mongo {
+    top: 65%;
+    left: 5%;
+  }
+
+  .mysql {
+    top: 75%;
+    left: 38%;
+  }
+
+  .git {
+    top: 84%;
+    left: 42%;
   }
 }
-
 
 /* =========================
    EXPERIENCE

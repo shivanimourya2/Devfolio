@@ -23,8 +23,17 @@ function Experience() {
       <div className="experience-item">
         <span>2026</span>
         <div>
+          <h3>Sapphire Infocom Pvt Ltd</h3>
+          <p>Software Engineer at Sapphire Infocom Pvt Ltd</p>
+        </div>
+
+      </div>
+
+      <div className="experience-item">
+        <span>2026</span>
+        <div>
           <h3>Open Source Connect India </h3>
-          <p>OSCI’26 Contributor</p>
+          <p>OSCI’26 Contributor & campus Lead</p>
         </div>
 
       </div>

@@ -1,0 +1,268 @@
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  
+}
+/* =========================
+   SOFT AMBIENT GLOW
+========================= */
+
+.glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.08;
+  background: #8b5cf6;
+  animation: glowMove 12s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+  top: 10%;
+  left: 10%;
+}
+
+.glow-2 {
+  top: 45%;
+  right: 5%;
+  animation-delay: -4s;
+}
+
+.glow-3 {
+  bottom: 5%;
+  left: 45%;
+  animation-delay: -8s;
+}
+
+@keyframes glowMove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(80px, -50px);
+  }
+
+  100% {
+    transform: translate(-40px, 60px);
+  }
+}
+
+/* =========================
+   BUBBLES
+========================= */
+
+.bubble {
+  position: absolute;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 50%;
+  /* background: rgba(139, 92, 246, 0.025); */
+  background: rgba(139, 92, 246, 0.08);
+border: 1px solid rgba(168, 85, 247, 0.45);
+  box-shadow:
+    0 0 25px rgba(139, 92, 246, 0.08),
+    inset 0 0 20px rgba(168, 85, 247, 0.04);
+
+  animation:
+    floatBubble 10s ease-in-out infinite,
+    bubblePulse 5s ease-in-out infinite;
+}
+
+/* Different sizes & positions */
+
+.bubble-1 {
+  width: 90px;
+  height: 90px;
+  top: 18%;
+  left: 7%;
+  animation-duration: 12s;
+}
+
+.bubble-2 {
+  width: 35px;
+  height: 35px;
+  top: 30%;
+  left: 30%;
+  animation-duration: 8s;
+  animation-delay: -2s;
+}
+
+.bubble-3 {
+  width: 140px;
+  height: 140px;
+  top: 15%;
+  right: 12%;
+  animation-duration: 15s;
+  animation-delay: -5s;
+}
+
+.bubble-4 {
+  width: 55px;
+  height: 55px;
+  top: 55%;
+  right: 25%;
+  animation-duration: 9s;
+  animation-delay: -3s;
+}
+
+.bubble-5 {
+  width: 110px;
+  height: 110px;
+  bottom: 15%;
+  left: 15%;
+  animation-duration: 14s;
+  animation-delay: -7s;
+}
+
+.bubble-6 {
+  width: 25px;
+  height: 25px;
+  bottom: 30%;
+  left: 45%;
+  animation-duration: 7s;
+}
+
+.bubble-7 {
+  width: 70px;
+  height: 70px;
+  bottom: 10%;
+  right: 10%;
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+
+.bubble-8 {
+  width: 40px;
+  height: 40px;
+  top: 70%;
+  left: 70%;
+  animation-duration: 8s;
+  animation-delay: -6s;
+}
+
+@keyframes floatBubble {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(20px, -30px);
+  }
+
+  50% {
+    transform: translate(-15px, -55px);
+  }
+
+  75% {
+    transform: translate(25px, -25px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bubblePulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* =========================
+   SMALL PARTICLES
+========================= */
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(192, 132, 252, 0.7);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+.particle-1 {
+  top: 20%;
+  left: 25%;
+}
+
+.particle-2 {
+  top: 40%;
+  left: 60%;
+  animation-delay: -2s;
+}
+
+.particle-3 {
+  top: 65%;
+  left: 20%;
+  animation-delay: -4s;
+}
+
+.particle-4 {
+  top: 25%;
+  right: 25%;
+  animation-delay: -1s;
+}
+
+.particle-5 {
+  bottom: 20%;
+  right: 35%;
+  animation-delay: -3s;
+}
+
+.particle-6 {
+  bottom: 35%;
+  left: 55%;
+  animation-delay: -5s;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-20px);
+    opacity: 0.9;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .bubble-3,
+  .bubble-5 {
+    display: none;
+  }
+
+  .glow {
+     opacity: 0.15;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .particle,
+  .glow {
+    animation: none;
+  }
+}

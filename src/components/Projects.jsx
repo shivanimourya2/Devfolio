@@ -93,7 +93,7 @@ const Projects = () => {
           <span className="label-dot"></span>
           <span>FEATURED WORK</span>
         </div>
-        <h2 className="section-heading">REACT PROJECTS</h2>
+        <h2 className="section-heading">PROJECTS</h2>
       </div>
 
       <div
