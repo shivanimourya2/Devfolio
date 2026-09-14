@@ -369,37 +369,52 @@ textarea {
 .hero-socials {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  margin-top: 1.5rem;
+  gap: 26px;
+  margin-top: 28px;
+  margin-bottom: 30px;
 }
 
 .hero-social-item {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #a1a1aa;
+
+  width: 28px;
+  height: 28px;
+
+  color: #ffffff;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  font-size: 25px;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .hero-social-item:hover {
-  color: #c084fc;
-  background: rgba(168, 85, 247, 0.12);
-  border-color: rgba(168, 85, 247, 0.45);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(168, 85, 247, 0.25);
+  color: #b66cff;
+  transform: translateY(-4px);
 }
 
-.hero-social-item:focus-visible {
-  outline: 2px solid #a855f7;
-  outline-offset: 2px;
+/* Gmail - black logo with white background */
+.hero-social-item.hero-gmail {
+  color: #000000;
+  background: #ffffff;
+  border-radius: 7px;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
 }
 
+.hero-social-item.hero-gmail:hover {
+  color: #000000;
+  background: #ffffff;
+  transform: translateY(-4px);
+}
 /* -------------------------
    RIGHT COLUMN: DEVELOPER IDENTITY CARD
 ------------------------- */
