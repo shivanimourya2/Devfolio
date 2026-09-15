@@ -1,0 +1,352 @@
+/* =========================================
+   CONTACT SECTION
+   ========================================= */
+
+.contact-section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 7rem 2rem;
+
+  background: #09090b;
+  color: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   CONTACT CARD
+   ========================================= */
+
+.contact-card {
+  width: min(900px, 90%);
+  padding: 3.5rem;
+
+  background: #121218;
+
+  border: 1px solid rgba(139, 92, 246, 0.55);
+  border-radius: 1.5rem;
+
+  position: relative;
+
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.08),
+    0 0 25px rgba(139, 92, 246, 0.08),
+    0 25px 60px rgba(0, 0, 0, 0.5);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 2.75rem;
+}
+
+.contact-title {
+  margin: 0 0 0.75rem;
+
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+
+  background: linear-gradient(
+    135deg,
+    #c084fc 0%,
+    #8b5cf6 50%,
+    #a855f7 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-subtitle {
+  max-width: 520px;
+  margin: 0 auto;
+
+  color: #a1a1aa;
+
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+/* =========================================
+   FORM
+   ========================================= */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+/* Name + Email */
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+
+/* =========================================
+   INPUT GROUP
+   ========================================= */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  color: #d4d8d8;
+
+  font-size: 1.0rem;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   INPUTS
+   ALWAYS GLOWING
+   ========================================= */
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+
+  padding: 0.9rem 1rem;
+
+  background: #181820;
+  color: #f4f4f5;
+
+  border: 3px solid rgba(109, 57, 233, 0.553);
+  border-radius: 0.7rem;
+
+  outline: none;
+  box-sizing: border-box;
+
+  font-family: inherit;
+  font-size: 0.875rem;
+
+  /* ALWAYS VISIBLE PURPLE GLOW */
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.08),
+    0 0 12px rgba(139, 92, 246, 0.10);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* =========================================
+   PLACEHOLDER
+   ========================================= */
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #71717a;
+}
+
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.input-group input:hover,
+.input-group textarea:hover {
+  border-color: rgb(169, 85, 247);
+
+  box-shadow:
+    0 0 0 1px rgba(159, 66, 246, 0.536),
+    0 0 18px rgba(168, 85, 247, 0.18);
+}
+
+
+/* =========================================
+   FOCUS / TYPING
+   STRONGER GLOW
+   ========================================= */
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #c084fc;
+
+  background: #1a1a23;
+
+  box-shadow:
+    0 0 0 2px rgba(168, 85, 247, 0.18),
+    0 0 15px rgba(168, 85, 247, 0.35),
+    0 0 35px rgba(139, 92, 246, 0.15);
+}
+
+
+/* =========================================
+   TEXTAREA
+   ========================================= */
+
+.input-group textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+
+/* =========================================
+   SEND BUTTON
+   ========================================= */
+
+.contact-submit-btn {
+  width: 100%;
+
+  margin-top: 0.25rem;
+  padding: 0.9rem 1.5rem;
+
+  background: linear-gradient(
+    135deg,
+    #7c3aed 0%,
+    #9333ea 100%
+  );
+
+  color: #ffffff;
+
+  border: 1px solid rgba(216, 180, 254, 0.7);
+  border-radius: 0.7rem;
+
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 12px rgba(139, 92, 246, 0.20),
+    0 8px 25px rgba(124, 58, 237, 0.20);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+   ========================================= */
+
+.contact-submit-btn:hover {
+  transform: translateY(-2px);
+
+  border-color: #e9d5ff;
+
+  box-shadow:
+    0 0 18px rgba(168, 85, 247, 0.35),
+    0 12px 35px rgba(124, 58, 237, 0.30);
+}
+
+
+/* =========================================
+   BUTTON ACTIVE
+   ========================================= */
+
+.contact-submit-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   DISABLED
+   ========================================= */
+
+.contact-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+   ========================================= */
+
+.contact-success-msg {
+  margin-top: 0.5rem;
+
+  text-align: center;
+
+  color: #34d399;
+
+  font-size: 0.75rem;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 6rem 1.5rem;
+  }
+
+  .contact-card {
+    width: 92%;
+    padding: 2.75rem 2.25rem;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 5rem 1rem;
+  }
+
+  .contact-card {
+    width: 100%;
+    padding: 2.25rem 1.25rem;
+    border-radius: 1.1rem;
+  }
+
+  .contact-header {
+    margin-bottom: 2rem;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .contact-row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .contact-form {
+    gap: 1.25rem;
+  }
+
+  .input-group textarea {
+    min-height: 120px;
+  }
+}

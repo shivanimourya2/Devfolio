@@ -14,7 +14,7 @@ import {
   SiGithub,
   SiX,
   SiLeetcode,
-  SiInstagram,
+  SiGmail,
   SiDiscord,
 } from "react-icons/si";
 
@@ -369,14 +369,12 @@ export default function Hero() {
 
             {/* Instagram */}
             <a
-              href="https://instagram.com/shivanimourya2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-social-item"
-              aria-label="Instagram Profile"
-              title="Instagram"
+              href="shivanimourya2"
+              className="hero-social-item hero-gmail"
+              aria-label="Instagram "
+              title="Gmail"
             >
-              <SiInstagram />
+              <SiGmail />
             </a>
 
             {/* Discord */}
