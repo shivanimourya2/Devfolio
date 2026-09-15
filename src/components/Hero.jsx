@@ -16,6 +16,7 @@ import {
   SiLeetcode,
   SiGmail,
   SiDiscord,
+  SiInstagram,
 } from "react-icons/si";
 
 import { FaLinkedin } from "react-icons/fa";
@@ -100,133 +101,139 @@ export default function Hero() {
     roleIndex,
     typingSpeed,
   ]);
+/* =========================
+   GSAP HERO ANIMATION
+========================= */
 
-  /* =========================
-     GSAP HERO ANIMATION
-  ========================= */
+useEffect(() => {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+  if (prefersReducedMotion) return;
 
-    if (prefersReducedMotion) return;
+  const ctx = gsap.context(() => {
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+      },
+    });
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
+    tl.from(".hero-glow-bg", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 1.4,
+      ease: "power2.out",
+    })
+
+      // Eyebrow
+      .from(
+        ".hero-eyebrow",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.7,
         },
-      });
+        "-=1"
+      )
 
-      tl.from(".hero-glow-bg", {
-        opacity: 0,
-        scale: 0.8,
-        duration: 1.4,
-        ease: "power2.out",
-      })
+      // Name
+      .from(
+        ".hero-title-line",
+        {
+          y: 35,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.12,
+        },
+        "-=0.5"
+      )
 
-        .from(
-          ".hero-eyebrow",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "-=1.0"
-        )
+      // Role
+      .from(
+        ".hero-role-block",
+        {
+          y: 25,
+          opacity: 0,
+          duration: 0.8,
+        },
+        "-=0.6"
+      )
 
-        .from(
-          ".hero-title-line",
-          {
-            y: 35,
-            opacity: 0,
-            duration: 0.9,
-            stagger: 0.12,
-          },
-          "-=0.5"
-        )
+      // Description
+      .from(
+        ".hero-description",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.7,
+        },
+        "-=0.5"
+      )
 
-        .from(
-          ".hero-role-block",
-          {
-            y: 25,
-            opacity: 0,
-            duration: 0.8,
-          },
-          "-=0.6"
-        )
+      // Social icons
+      .from(
+        ".hero-social-item",
+        {
+          y: 15,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.08,
+        },
+        "-=0.3"
+      )
 
-        .from(
-          ".hero-description",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.7,
-          },
-          "-=0.5"
-        )
+      // CTA buttons
+      .from(
+        ".hero-buttons",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+        },
+        "-=0.2"
+      )
 
-        /* Social icons appear BEFORE buttons */
-        .from(
-          ".hero-social-item",
-          {
-            y: 15,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.08,
-          },
-          "-=0.3"
-        )
+      // Right-side card
+      .from(
+        ".hero-visual-card",
+        {
+          y: 40,
+          opacity: 0,
+          scale: 0.95,
+          duration: 1.1,
+          ease: "power2.out",
+        },
+        "-=0.7"
+      )
 
-        .from(
-          ".hero-cta-btn",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-          },
-          "-=0.3"
-        )
+      // Floating badges
+      .from(
+        ".floating-badge",
+        {
+          scale: 0,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.4"
+      )
 
-        .from(
-          ".hero-visual-card",
-          {
-            y: 40,
-            opacity: 0,
-            scale: 0.95,
-            duration: 1.1,
-            ease: "power2.out",
-          },
-          "-=0.8"
-        )
+      // Scroll indicator
+      .from(
+        ".hero-scroll-indicator",
+        {
+          opacity: 0,
+          y: -15,
+          duration: 0.8,
+        },
+        "-=0.2"
+      );
+      }, heroRef);
 
-        .from(
-          ".floating-badge",
-          {
-            scale: 0,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-          },
-          "-=0.4"
-        )
-
-        .from(
-          ".hero-scroll-indicator",
-          {
-            opacity: 0,
-            y: -15,
-            duration: 0.8,
-          },
-          "-=0.2"
-        );
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
+  return () => ctx.revert();
+}, []);
 
   return (
     <section
@@ -372,9 +379,9 @@ export default function Hero() {
               href="shivanimourya2"
               className="hero-social-item hero-gmail"
               aria-label="Instagram "
-              title="Gmail"
+              title="Instagram"
             >
-              <SiGmail />
+              <SiInstagram />
             </a>
 
             {/* Discord */}
