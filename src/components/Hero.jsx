@@ -313,9 +313,8 @@ useEffect(() => {
 
           {/* Description */}
           <p className="hero-description">
-            I turn ideas into fast, polished web apps —
-            clean React front-ends, solid Node/Express APIs,
-            and UI that doesn't feel like a template.
+            <h4>Turning caffeine into commits☕</h4>
+           <h5>A Computer Engineering student figuring things out by building them.</h5>
           </p>
 
           {/* =========================
