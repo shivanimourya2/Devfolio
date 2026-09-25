@@ -35,7 +35,7 @@ const projectsData = [
   },
  {
   title: "LabourLink",
-  subtitle: "Labour & Service Booking Platform",
+  subtitle: "Worker & Contractor",
   description: "A platform that connects customers with nearby skilled and unskilled workers, enabling service discovery, booking, communication, and work management.",
   technologies: ["Spring Boot", "MySQL", "HTML", "CSS", "JavaScript"],
   image: Labourlink,
