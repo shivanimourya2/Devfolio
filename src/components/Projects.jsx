@@ -4,7 +4,7 @@ import './Projects.css';
 import rizzChatImg from '../assets/projects/rizzchat.png';
 import bankingImg from '../assets/projects/banking.jpeg';
 import speedoTypeImg from '../assets/projects/speedotype.png';
-
+import Labourlink from '../assets/projects/Labourlink.png';
 const projectsData = [
   {
     title: "Rizz chat",
@@ -21,6 +21,7 @@ const projectsData = [
     description: "A comprehensive virtual banking interface showcasing secure transactions, intuitive user dashboards, and real-time financial data management.",
     technologies: ["Java", "Springboot", "SQL"],
     image: bankingImg,
+    liveUrl: "https://github.com/shivanimourya2/Virtual-banking-system.git",
     githubUrl: "https://github.com/shivanimourya2/Virtual-banking-system.git"
   },
   {
@@ -31,7 +32,17 @@ const projectsData = [
     image: speedoTypeImg,
     liveUrl: "https://speedo-type-eosin.vercel.app/",
     githubUrl: "https://github.com/shivanimourya2/SpeedoType.git"
-  }
+  },
+ {
+  title: "LabourLink",
+  subtitle: "Labour & Service Booking Platform",
+  description: "A platform that connects customers with nearby skilled and unskilled workers, enabling service discovery, booking, communication, and work management.",
+  technologies: ["Spring Boot", "MySQL", "HTML", "CSS", "JavaScript"],
+  image: Labourlink,
+  liveUrl: "https://github.com/shivanimourya2/Labourlink.git", 
+  githubUrl: "https://github.com/shivanimourya2/Labourlink.git"
+}
+
 ];
 
 const Projects = () => {
@@ -141,7 +152,7 @@ const Projects = () => {
               ) : (
                 <button className="editorial-btn editorial-btn-primary disabled" disabled title="Live preview currently unavailable">
                   <span>VIEW LIVE PROJECT</span>
-                  <span className="disabled-tag">(UNAVAILABLE)</span>
+                  
                 </button>
               )}
 
