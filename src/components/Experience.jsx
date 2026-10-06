@@ -1,266 +1,173 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./Experience.css";
 
+// Logos live in src/assets/logos. If this file is not directly inside a folder
+// one level under src (e.g. src/components), adjust the "../assets" part.
+import gssocLogo from "../assets/logos/gssoc.png";
+import ecellLogo from "../assets/logos/ecell.png";
+import sapphireLogo from "../assets/logos/sapphire.png";
+import osciContributor from "../assets/logos/osci-contributor.webp";
+import osciCampusLead from "../assets/logos/osci-campus-lead.webp";
+
 gsap.registerPlugin(ScrollTrigger);
 
+/* ---------------------------------------------------------------
+   CONTENT — edit freely.
+   visuals: imported images (kind "logo" = tile, "badge" = full image).
+   rgb:  the accent color of the card, as "r, g, b".
+---------------------------------------------------------------- */
 const experiences = [
   {
-    id: "01",
-    title: "OPEN SOURCE",
-    subtitle: "CONTRIBUTOR",
-    organization: "GirlScript Summer of Code",
-    short: "GSSoC 2026",
+    period: "2026",
+    role: "Open Source Contributor",
+    org: "GirlScript Summer of Code",
+    badge: "GSSoC 2026",
+    text: "Contributing features and fixes to KisanAI, an open-source project built with Next.js, TypeScript and MongoDB.",
+    tags: ["Next.js", "TypeScript", "MongoDB"],
+    visuals: [{ src: gssocLogo, alt: "GSSoC logo", kind: "logo" }],
+    rgb: "255, 122, 60",
   },
   {
-    id: "02",
-    title: "CAMPUS",
-    subtitle: "AMBASSADOR",
-    organization: "E-Cell × IIT Bombay",
-    short: "E-Cell × IITB",
+    period: "2026",
+    role: "Campus Ambassador",
+    org: "E-Cell × IIT Bombay",
+    badge: "E-Cell IITB",
+    text: "Representing E-Cell IIT Bombay at K.C. College of Engineering and bringing its startup programs to students.",
+    tags: ["Community", "Outreach", "Events"],
+    visuals: [{ src: ecellLogo, alt: "E-Cell IIT Bombay logo", kind: "logo" }],
+    rgb: "140, 170, 210",
   },
   {
-    id: "03",
-    title: "SOFTWARE",
-    subtitle: "ENGINEER",
-    organization: "Sapphire Infocom Pvt Ltd",
-    short: "Sapphire Infocom",
+    period: "2026",
+    role: "Software Engineer",
+    org: "Sapphire Infocom Pvt Ltd",
+    badge: "Software Development",
+    text: "Building and shipping software as part of the development team.",
+    tags: ["React", "Java", "Spring Boot"],
+    visuals: [{ src: sapphireLogo, alt: "Sapphire Infocom logo", kind: "logo" }],
+    rgb: "40, 160, 240",
   },
   {
-    id: "04",
-    title: "OPEN SOURCE",
-    subtitle: "CONNECT INDIA",
-    organization: "Contributor + Campus Lead",
-    short: "OSCI'26",
+    period: "2026",
+    role: "Contributor & Campus Lead",
+    org: "Open Source Connect India",
+    badge: "OSCI'26",
+    text: "Contributing to open source and leading the campus community for Open Source Connect India.",
+    tags: ["Open Source", "Leadership"],
+    visuals: [
+      { src: osciContributor, alt: "OSCI Contributor 2026 badge", kind: "badge" },
+      { src: osciCampusLead, alt: "OSCI Campus Lead 2026 badge", kind: "badge" },
+    ],
+    rgb: "94, 224, 160",
   },
 ];
 
+function Arrow() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function Experience() {
   const sectionRef = useRef(null);
-  const pathRef = useRef(null);
-  const stopsRef = useRef([]);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    const path = pathRef.current;
+  // Cards pile up: each card shrinks and dims as the next one slides over it
+  useLayoutEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
 
-    if (!section || !path) return;
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".xs-card");
+      cards.forEach((card, i) => {
+        const next = cards[i + 1];
+        if (!next) return;
+        const trigger = {
+          trigger: next,
+          start: "top 85%",
+          end: "top 25%",
+          scrub: true,
+        };
+        // slight shrink + a soft dark veil (no CSS filter, so cards stay bright)
+        gsap.fromTo(
+          card,
+          { scale: 1 },
+          { scale: 0.95, transformOrigin: "center top", ease: "none", scrollTrigger: trigger }
+        );
+        gsap.fromTo(
+          card.querySelector(".xs-shade"),
+          { opacity: 0 },
+          { opacity: 0.4, ease: "none", scrollTrigger: trigger }
+        );
+      });
+    }, sectionRef);
 
-    const pathLength = path.getTotalLength();
-
-    // Hide the route initially
-    gsap.set(path, {
-      strokeDasharray: pathLength,
-      strokeDashoffset: pathLength,
-    });
-
-    // Hide route stops initially
-    gsap.set(stopsRef.current, {
-      scale: 0,
-      opacity: 0,
-      transformOrigin: "center",
-    });
-
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 75%",
-        end: "bottom 70%",
-        scrub: 1,
-      },
-    });
-
-    timeline.to(path, {
-      strokeDashoffset: 0,
-      ease: "none",
-      duration: 1,
-    });
-
-    timeline.to(
-      stopsRef.current,
-      {
-        scale: 1,
-        opacity: 1,
-        stagger: 0.2,
-        duration: 0.25,
-        ease: "back.out(2)",
-      },
-      0.15
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
+  // Soft spotlight that follows the cursor inside a card
+  const spotlight = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
+
   return (
-    <section className="experience-section" ref={sectionRef}>
+    <section className="experience-section" id="experience" ref={sectionRef}>
       <div className="experience-container">
+        <header className="xs-heading">
+          <p className="xs-eyebrow">04 — Experience</p>
+          <h2>Where the code took me.</h2>
+        </header>
 
-        {/* Heading */}
-        <div className="experience-heading">
-          <h1 className="experience-number">04 — EXPERIENCE</h1>
+        <div className="xs-stack">
+          {experiences.map((exp, i) => (
+            <article
+              className="xs-card"
+              key={exp.org}
+              style={{ "--rgb": exp.rgb, "--i": i }}
+              onMouseMove={spotlight}
+            >
+              <div className="xs-shade" aria-hidden="true" />
+              <div className={`xs-visual ${exp.visuals.length > 1 ? "is-pair" : ""}`}>
+                {exp.visuals.map((v, k) => (
+                  <span className={`xs-vis xs-vis-${v.kind} xs-vis-${k}`} key={v.src}>
+                    <img src={v.src} alt={v.alt} loading="lazy" />
+                  </span>
+                ))}
+              </div>
 
-          <h2>
-            Where the code
-            <br />
-            took me.
-          </h2>
+              <div className="xs-main">
+                <div className="xs-top">
+                  <span className="xs-badge">{exp.badge}</span>
+                  <span className="xs-period">{exp.period}</span>
+                </div>
+
+                <h3>{exp.role}</h3>
+                <p className="xs-org">
+                  {exp.org}
+                  <Arrow />
+                </p>
+                <p className="xs-text">{exp.text}</p>
+
+                <ul className="xs-tags">
+                  {exp.tags.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
         </div>
 
-        {/* Route */}
-        <div className="route-wrapper">
-
-          <svg
-            className="experience-route"
-            viewBox="0 0 1000 1500"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <defs>
-              <filter id="route-glow">
-                <feGaussianBlur stdDeviation="4" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-
-            <path
-              ref={pathRef}
-              className="route-path-glow"
-              d="
-                M 500 70
-                C 500 170, 500 190, 390 270
-                C 280 350, 280 400, 390 470
-                C 500 540, 650 540, 650 650
-                C 650 760, 500 760, 390 850
-                C 280 940, 300 1010, 430 1080
-                C 560 1150, 650 1190, 650 1300
-              "
-              filter="url(#route-glow)"
-            />
-
-            <path
-              className="route-path"
-              d="
-                M 500 70
-                C 500 170, 500 190, 390 270
-                C 280 350, 280 400, 390 470
-                C 500 540, 650 540, 650 650
-                C 650 760, 500 760, 390 850
-                C 280 940, 300 1010, 430 1080
-                C 560 1150, 650 1190, 650 1300
-              "
-            />
-          </svg>
-
-          {/* Year */}
-          <div className="route-year">
-            2026
-          </div>
-
-          {/* Experience 01 */}
-          <div
-            className="experience-stop stop-1"
-            ref={(el) => (stopsRef.current[0] = el)}
-          >
-            <div className="route-dot">
-              <span />
-            </div>
-
-            <div className="experience-info">
-              <span className="experience-index">01</span>
-
-              <h3>
-                OPEN SOURCE
-                <br />
-                CONTRIBUTOR
-              </h3>
-
-              <p>GirlScript Summer of Code</p>
-              <small>GSSoC 2026</small>
-            </div>
-          </div>
-
-          {/* Experience 02 */}
-          <div
-            className="experience-stop stop-2"
-            ref={(el) => (stopsRef.current[1] = el)}
-          >
-            <div className="route-dot">
-              <span />
-            </div>
-
-            <div className="experience-info">
-              <span className="experience-index">02</span>
-
-              <h3>
-                CAMPUS
-                <br />
-                AMBASSADOR
-              </h3>
-
-              <p>E-Cell × IIT Bombay</p>
-              <small>Campus Ambassador</small>
-            </div>
-          </div>
-
-          {/* Experience 03 */}
-          <div
-            className="experience-stop stop-3"
-            ref={(el) => (stopsRef.current[2] = el)}
-          >
-            <div className="route-dot">
-              <span />
-            </div>
-
-            <div className="experience-info">
-              <span className="experience-index">03</span>
-
-              <h3>
-                SOFTWARE
-                <br />
-                ENGINEER
-              </h3>
-
-              <p>Sapphire Infocom Pvt Ltd</p>
-              <small>Software Development</small>
-            </div>
-          </div>
-
-          {/* Experience 04 */}
-          <div
-            className="experience-stop stop-4"
-            ref={(el) => (stopsRef.current[3] = el)}
-          >
-            <div className="route-dot">
-              <span />
-            </div>
-
-            <div className="experience-info">
-              <span className="experience-index">04</span>
-
-              <h3>
-                OPEN SOURCE
-                <br />
-                CONNECT INDIA
-              </h3>
-
-              <p>Contributor + Campus Lead</p>
-              <small>OSCI'26</small>
-            </div>
-          </div>
-
-          {/* Ending */}
-          <div className="route-end">
-            <div className="end-dot">?</div>
-
-            <span>WHAT'S NEXT?</span>
-          </div>
-
+        <div className="xs-next">
+          <p>Still building. What's next?</p>
+          <a href="#contact">
+            Get in touch <Arrow />
+          </a>
         </div>
       </div>
     </section>
