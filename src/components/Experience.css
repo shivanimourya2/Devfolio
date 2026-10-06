@@ -18,11 +18,12 @@
 
 .xs-eyebrow {
   margin: 0 0 16px;
-  font-family: "Courier New", monospace;
-  font-size: 14px;
+  font-family: "Open Sans";
+  font-weight: bolder;
+  font-size: 22px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b482ff;
+  color: #c897f6;
 }
 
 .xs-heading h2 {
@@ -162,12 +163,14 @@
 }
 
 .xs-badge {
-  padding: 5px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 7px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;
   font-family: "Courier New", monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
   opacity: 1;
 }
 
@@ -213,20 +216,56 @@
 .xs-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 22px 0 0;
+  gap: 10px;
+  margin: 26px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .xs-tags li {
-  padding: 5px 13px;
+  padding: 7px 16px;
+  border: 1px solid rgba(var(--rgb), 0.5);
   border-radius: 999px;
-  background: rgba(var(--rgb), 0.2);
+  background: rgba(var(--rgb), 0.22);
   font-family: "Courier New", monospace;
-  font-size: 11px;
-  letter-spacing: 0.05em;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+}
+
+/* Checklist points */
+.xs-points {
+  display: grid;
+  gap: 18px;
+  max-width: 720px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xs-point {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+}
+
+.xs-point svg {
+  margin-top: 2px;
   color: rgb(var(--rgb));
+}
+
+.xs-point h4 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.xs-point p {
+  margin: 6px 0 0;
+  font-size: 15.5px;
+  line-height: 1.65;
+  opacity: 0.85;
 }
 
 /* Closing line */
@@ -245,25 +284,6 @@
   margin: 0;
   font-size: clamp(1.2rem, 2.2vw, 1.7rem);
   letter-spacing: -0.02em;
-}
-
-.xs-next a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border: 1px solid #b482ff;
-  border-radius: 999px;
-  color: inherit;
-  font-size: 15px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-
-.xs-next a:hover,
-.xs-next a:focus-visible {
-  background: rgba(180, 130, 255, 0.18);
-  outline: none;
 }
 
 /* Tablet */

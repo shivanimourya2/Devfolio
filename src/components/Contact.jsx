@@ -77,7 +77,7 @@ const Contact = () => {
           <div className="contact-row">
 
             <div className="input-group">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Name 🤗</label>
 
               <input
                 type="text"
@@ -91,7 +91,7 @@ const Contact = () => {
             </div>
 
             <div className="input-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email  📩</label>
 
               <input
                 type="email"
@@ -107,7 +107,7 @@ const Contact = () => {
           </div>
 
           <div className="input-group">
-            <label htmlFor="message">Message</label>
+            <label htmlFor="message">Message 📝</label>
 
             <textarea
               id="message"

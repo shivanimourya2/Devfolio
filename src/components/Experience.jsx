@@ -24,7 +24,12 @@ const experiences = [
     role: "Open Source Contributor",
     org: "GirlScript Summer of Code",
     badge: "GSSoC 2026",
-    text: "Contributing features and fixes to KisanAI, an open-source project built with Next.js, TypeScript and MongoDB.",
+    points: [
+      {
+        title: "Open Source Development",
+        text: "Built features, fixed bugs and raised pull requests on real-world open-source projects.",
+      },
+    ],
     tags: ["Next.js", "TypeScript", "MongoDB"],
     visuals: [{ src: gssocLogo, alt: "GSSoC logo", kind: "logo" }],
     rgb: "255, 122, 60",
@@ -34,18 +39,28 @@ const experiences = [
     role: "Campus Ambassador",
     org: "E-Cell × IIT Bombay",
     badge: "E-Cell IITB",
-    text: "Representing E-Cell IIT Bombay at K.C. College of Engineering and bringing its startup programs to students.",
+    points: [
+      {
+        title: "Campus Outreach",
+        text: "Promoting E-Cell IIT Bombay events and programs to students at K.C. College of Engineering.",
+      },
+    ],
     tags: ["Community", "Outreach", "Events"],
     visuals: [{ src: ecellLogo, alt: "E-Cell IIT Bombay logo", kind: "logo" }],
     rgb: "140, 170, 210",
   },
   {
     period: "2026",
-    role: "Software Engineer",
+    role: "Software Intern",
     org: "Sapphire Infocom Pvt Ltd",
-    badge: "Software Development",
-    text: "Building and shipping software as part of the development team.",
-    tags: ["React", "Java", "Spring Boot"],
+    badge: null, // no badge pill on this card
+    points: [
+      {
+        title: "Full Stack Development",
+        text: "Developed full stack modules using the MERN stack, built reusable React components, integrated REST APIs, fixed bugs, and improved overall UI responsiveness.",
+      },
+    ],
+    tags: ["MongoDB", "Express.js", "React", "Node.js"],
     visuals: [{ src: sapphireLogo, alt: "Sapphire Infocom logo", kind: "logo" }],
     rgb: "40, 160, 240",
   },
@@ -54,7 +69,12 @@ const experiences = [
     role: "Contributor & Campus Lead",
     org: "Open Source Connect India",
     badge: "OSCI'26",
-    text: "Contributing to open source and leading the campus community for Open Source Connect India.",
+    points: [
+      {
+        title: "Open Source Community",
+        text: "Contributed to open-source projects and led the campus community for Open Source Connect India.",
+      },
+    ],
     tags: ["Open Source", "Leadership"],
     visuals: [
       { src: osciContributor, alt: "OSCI Contributor 2026 badge", kind: "badge" },
@@ -63,6 +83,15 @@ const experiences = [
     rgb: "94, 224, 160",
   },
 ];
+
+function Check() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M8 12.4l2.7 2.7L16.2 9.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 function Arrow() {
   return (
@@ -120,7 +149,7 @@ function Experience() {
       <div className="experience-container">
         <header className="xs-heading">
           <p className="xs-eyebrow">04 — Experience</p>
-          <h2>Where the code took me.</h2>
+          <h2>Where the code took me.😎👩🏽‍💻</h2>
         </header>
 
         <div className="xs-stack">
@@ -142,7 +171,7 @@ function Experience() {
 
               <div className="xs-main">
                 <div className="xs-top">
-                  <span className="xs-badge">{exp.badge}</span>
+                  {exp.badge && <span className="xs-badge">{exp.badge}</span>}
                   <span className="xs-period">{exp.period}</span>
                 </div>
 
@@ -151,7 +180,17 @@ function Experience() {
                   {exp.org}
                   <Arrow />
                 </p>
-                <p className="xs-text">{exp.text}</p>
+                <ul className="xs-points">
+                  {exp.points.map((p) => (
+                    <li className="xs-point" key={p.title}>
+                      <Check />
+                      <div>
+                        <h4>{p.title}</h4>
+                        <p>{p.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
 
                 <ul className="xs-tags">
                   {exp.tags.map((t) => (
@@ -161,13 +200,6 @@ function Experience() {
               </div>
             </article>
           ))}
-        </div>
-
-        <div className="xs-next">
-          <p>Still building. What's next?</p>
-          <a href="#contact">
-            Get in touch <Arrow />
-          </a>
         </div>
       </div>
     </section>
