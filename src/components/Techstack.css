@@ -1,12 +1,10 @@
 /* =========================
-   TECH STACK SECTION
+   SECTION
 ========================= */
 
 .techstack-section {
   position: relative;
-
-  padding: 100px 8% 80px;
-
+  padding: 100px 5% 80px;
   overflow: hidden;
 }
 
@@ -16,130 +14,54 @@
 ========================= */
 
 .techstack-heading {
-  text-align: center;
-
   position: relative;
   z-index: 5;
+  text-align: center;
 }
 
 .section-number {
   display: block;
-
   margin-bottom: 14px;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  letter-spacing: 3px;
-
-  color: #ffffff;
-
-  font-family: monospace;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 44px;
+  font-weight: 650;
+  letter-spacing: 2px;
+  color: #a030dc;
 }
 
 .techstack-heading h2 {
   margin: 0;
-
-  font-size: 26px;
+  font-size: 34px;
   font-weight: 600;
-
   color: #ffffff;
 }
 
 
 /* =========================
-   EXPLORE BUTTON
-========================= */
-
-.techstack-action {
-  display: flex;
-  justify-content: center;
-
-  position: relative;
-  z-index: 10;
-
-  margin-top: 45px;
-  margin-bottom: 20px;
-}
-
-.techstack-button {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  padding: 13px 24px;
-
-  border: 1px solid rgba(168, 85, 247, 0.5);
-
-  border-radius: 30px;
-
-  background: rgba(10, 7, 15, 0.85);
-
-  color: #e9d5ff;
-
-  font-family: inherit;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(10px);
-
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.techstack-button:hover {
-  transform: translateY(-3px);
-
-  border-color: rgba(168, 85, 247, 0.9);
-
-  box-shadow:
-    0 8px 30px rgba(139, 92, 246, 0.18);
-}
-
-.button-arrow {
-  font-size: 17px;
-}
-
-
-/* =========================
-   CIRCULAR CONTAINER
+   CONTAINER (opens on scroll)
 ========================= */
 
 .techstack-container {
+  --orbit: 720px; /* orbit diameter: change this to resize the whole ring */
+
   position: relative;
-
-  width: 650px;
+  width: 960px;
+  max-width: 100%;
   height: 0;
-
-  margin: 0 auto;
-
+  margin: 30px auto 0;
   opacity: 0;
-
   transform: scale(0.8);
-
   pointer-events: none;
-
   transition:
     height 0.8s ease,
     opacity 0.6s ease,
     transform 0.7s ease;
 }
 
-
-/* OPEN STATE */
-
 .techstack-container.show-stack {
-  height: 650px;
-
+  height: 900px;
   opacity: 1;
-
   transform: scale(1);
-
   pointer-events: auto;
 }
 
@@ -150,331 +72,214 @@
 
 .techstack-center {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
-  width: 105px;
-  height: 105px;
-
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
-
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
   background: rgba(15, 8, 25, 0.95);
-
   border: 1px solid rgba(168, 85, 247, 0.7);
-
   box-shadow:
-    0 0 25px rgba(139, 92, 246, 0.25),
-    0 0 70px rgba(139, 92, 246, 0.1);
-
-  z-index: 5;
+    0 0 35px rgba(139, 92, 246, 0.3),
+    0 0 90px rgba(139, 92, 246, 0.12);
 }
 
 .techstack-center span {
-  font-size: 30px;
-
-  color: #c084fc;
-
   font-family: monospace;
-
-  text-shadow:
-    0 0 15px rgba(192, 132, 252, 0.8);
+  font-size: 44px;
+  color: #c084fc;
+  text-shadow: 0 0 15px rgba(192, 132, 252, 0.8);
 }
 
 
 /* =========================
-   ORBIT CIRCLE
+   ORBIT RING
 ========================= */
 
 .techstack-orbit {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
-  width: 470px;
-  height: 470px;
-
+  width: var(--orbit);
+  height: var(--orbit);
   transform: translate(-50%, -50%);
-
   border-radius: 50%;
-
-  border: 1px solid rgba(168, 85, 247, 0.22);
-
+  border: 1px solid rgba(168, 85, 247, 0.3);
   box-shadow:
-    0 0 40px rgba(139, 92, 246, 0.05),
-    inset 0 0 40px rgba(139, 92, 246, 0.03);
+    0 0 50px rgba(139, 92, 246, 0.07),
+    inset 0 0 50px rgba(139, 92, 246, 0.04);
 }
 
 
 /* =========================
-   TECH PILLS
+   SLOT
+   Rotates to its angle, then moves out to the ring,
+   so every pill sits exactly on the line.
+========================= */
+
+.tech-slot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--angle)) translateX(calc(var(--orbit) / 2));
+}
+
+
+/* =========================
+   PILL
+   Counter-rotates so the text stays upright.
 ========================= */
 
 .tech-pill {
   position: absolute;
-
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 8px;
-
-  padding: 10px 16px;
-
-  border-radius: 30px;
-
-  background: rgba(10, 8, 15, 0.9);
-
-  border: 1px solid rgba(168, 85, 247, 0.35);
-
-  color: #e5e5e5;
-
-  font-size: 13px;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: 40px;
+  background: rgba(12, 9, 20, 0.95);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  color: #f1f1f1;
+  font-size: 16px;
   font-weight: 600;
-
   white-space: nowrap;
-
   backdrop-filter: blur(10px);
-
   opacity: 0;
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * -1)) scale(0.3);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
 
-  transform:
-    translate(-50%, -50%)
-    scale(0.3);
+.tech-icon {
+  flex-shrink: 0;
+  font-size: 24px;
+}
 
-  z-index: 3;
+/* Hover: glow only, so it doesn't fight the animation's transform */
+.tech-pill:hover {
+  border-color: rgba(192, 132, 252, 0.95);
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.35);
 }
 
 
 /* =========================
-   ONE-BY-ONE ANIMATION
+   ONE-BY-ONE REVEAL
 ========================= */
 
 .show-stack .tech-pill {
-  animation:
-    techReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+  animation: techReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes techReveal {
-
   0% {
     opacity: 0;
-
-    transform:
-      translate(-50%, -50%)
-      scale(0.3);
-
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) * -1)) scale(0.3);
     filter: blur(6px);
   }
-
   70% {
     opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1.08);
-
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) * -1)) scale(1.08);
     filter: blur(0);
   }
-
   100% {
     opacity: 1;
-
-    transform:
-      translate(-50%, -50%)
-      scale(1);
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) * -1)) scale(1);
   }
 }
-/* =========================
-   CIRCULAR POSITIONS
-========================= */
 
-/* TOP */
-
-.java {
-  top: 8%;
-  left: 50%;
-}
-
-.javascript {
-  top: 14%;
-  left: 72%;
-}
-
-
-/* UPPER RIGHT */
-
-.c {
-  top: 28%;
-  left: 86%;
-}
-
-.react {
-  top: 44%;
-  left: 92%;
-}
-
-
-/* LOWER RIGHT */
-
-.html {
-  top: 60%;
-  left: 92%;
-}
-
-.css {
-  top: 74%;
-  left: 84%;
-}
-
-
-/* BOTTOM */
-
-.node {
-  top: 86%;
-  left: 74%;
-}
-
-.express {
-  top: 92%;
-  left: 50%;
-}
-
-
-/* LOWER LEFT */
-
-.spring {
-  top: 86%;
-  left: 26%;
-}
-
-.mongo {
-  top: 74%;
-  left: 16%;
-}
-
-
-/* LEFT */
-
-.mysql {
-  top: 60%;
-  left: 8%;
-}
-
-.python {
-  top: 44%;
-  left: 8%;
-}
-
-
-/* UPPER LEFT */
-
-.git {
-  top: 14%;
-  left: 28%;
-}
-
-.github {
-  top: 28%;
-  left: 14%;
-}
-/* =========================
-   TECH ICONS
-========================= */
-
-.tech-icon {
-  width: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 17px;
-
-  font-family: monospace;
+@media (prefers-reduced-motion: reduce) {
+  .techstack-container,
+  .show-stack .tech-pill {
+    transition: none;
+    animation-duration: 0.01s;
+    animation-delay: 0s !important;
+  }
 }
 
 
 /* =========================
-   BRAND COLORS
+   RESPONSIVE
 ========================= */
 
-.java .tech-icon {
-  color: #f89820;
+@media (max-width: 1000px) {
+  .techstack-container {
+    --orbit: 560px;
+    width: 740px;
+  }
+
+  .techstack-container.show-stack {
+    height: 720px;
+  }
+
+  .techstack-center {
+    width: 120px;
+    height: 120px;
+  }
+
+  .techstack-center span {
+    font-size: 36px;
+  }
+
+  .tech-pill {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .tech-icon {
+    font-size: 20px;
+  }
 }
 
-.javascript .tech-icon {
-  color: #f7df1e;
-}
+@media (max-width: 700px) {
+  .section-number {
+    font-size: 28px;
+  }
 
-.c .tech-icon {
-  color: #5c8dbc;
-}
+  .techstack-heading h2 {
+    font-size: 24px;
+  }
 
-.react .tech-icon {
-  color: #61dafb;
-}
+  /* The ring is too cramped on phones, so switch to a wrapped grid */
+  .techstack-container,
+  .techstack-container.show-stack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    transform: none;
+  }
 
-.html .tech-icon {
-  color: #e34f26;
-}
+  .techstack-orbit,
+  .techstack-center {
+    display: none;
+  }
 
-.css .tech-icon {
-  color: #1572b6;
-}
+  .tech-slot {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
 
-.node .tech-icon {
-  color: #68a063;
-}
-
-.express .tech-icon {
-  color: #ffffff;
-}
-
-.spring .tech-icon {
-  color: #6db33f;
-}
-
-.mongo .tech-icon {
-  color: #47a248;
-}
-
-.mysql .tech-icon {
-  color: #4479a1;
-}
-
-.python .tech-icon {
-  color: #3776ab;
-}
-
-.git .tech-icon {
-  color: #f05032;
-}
-
-.github .tech-icon {
-  color: #ffffff;
-}
-
-
-/* =========================
-   HOVER
-========================= */
-
-.tech-pill:hover {
-  border-color: rgba(96, 9, 176, 0.8);
-
-  box-shadow:
-    0 0 25px rgba(139, 92, 246, 0.15);
-
-  transform:
-    translate(-50%, -50%)
-    scale(1.05);
+  .tech-pill {
+    position: static;
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
 }
