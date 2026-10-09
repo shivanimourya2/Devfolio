@@ -1,87 +1,95 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import {
+  FaJava,
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaPython,
+  FaGitAlt,
+  FaGithub,
+} from "react-icons/fa";
+import {
+  SiJavascript,
+  SiC,
+  SiExpress,
+  SiSpringboot,
+  SiMongodb,
+  SiMysql,
+} from "react-icons/si";
 import "./Techstack.css";
+
 const technologies = [
-  { name: "Java", icon: "☕", position: "java" },
-  { name: "JavaScript", icon: "JS", position: "javascript" },
-  { name: "C", icon: "C", position: "c" },
-  { name: "React", icon: "⚛", position: "react" },
-  { name: "HTML5", icon: "◇", position: "html" },
-  { name: "CSS3", icon: "▱", position: "css" },
-  { name: "Node.js", icon: "⬡", position: "node" },
-  { name: "Express.js", icon: "⌘", position: "express" },
-  { name: "Spring Boot", icon: "♨", position: "spring" },
-  { name: "MongoDB", icon: "◆", position: "mongo" },
-  { name: "MySQL", icon: "◇", position: "mysql" },
-  { name: "Python", icon: "Py", position: "python" },
-  { name: "Git", icon: "⑂", position: "git" },
-  { name: "GitHub", icon: "◉", position: "github" },
+  { name: "Java", Icon: FaJava, color: "#f89820" },
+  { name: "JavaScript", Icon: SiJavascript, color: "#f7df1e" },
+  { name: "C", Icon: SiC, color: "#5c8dbc" },
+  { name: "React", Icon: FaReact, color: "#61dafb" },
+  { name: "HTML5", Icon: FaHtml5, color: "#e34f26" },
+  { name: "CSS3", Icon: FaCss3Alt, color: "#2d9bf0" },
+  { name: "Node.js", Icon: FaNodeJs, color: "#68a063" },
+  { name: "Express.js", Icon: SiExpress, color: "#ffffff" },
+  { name: "Spring Boot", Icon: SiSpringboot, color: "#6db33f" },
+  { name: "MongoDB", Icon: SiMongodb, color: "#47a248" },
+  { name: "MySQL", Icon: SiMysql, color: "#4b9fd1" },
+  { name: "Python", Icon: FaPython, color: "#4b8bbe" },
+  { name: "Git", Icon: FaGitAlt, color: "#f05032" },
+  { name: "GitHub", Icon: FaGithub, color: "#ffffff" },
 ];
 
 function TechStack() {
   const [showStack, setShowStack] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) setShowStack(true);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="techstack-section" id="techstack">
-
+    <section className="techstack-section" id="techstack" ref={sectionRef}>
       {/* Heading */}
       <div className="techstack-heading">
-        <span className="section-number">
-          02 — TECHNICAL STACK
-        </span>
-
-        <h2>Technologies & Tools</h2>
-      </div>
-
-      {/* Explore Button */}
-      <div className="techstack-action">
-        <button
-          className="techstack-button"
-          onClick={() => setShowStack(!showStack)}
-        >
-          <span>
-            {showStack ? "Hide my stack" : "Explore my stack"}
-          </span>
-
-          <span className="button-arrow">
-            {showStack ? "↑" : "↓"}
-          </span>
-        </button>
+        <span className="section-number">02 — TECHNICAL STACK ⚛</span>
+        <h2>Technologies &amp; Tools</h2>
       </div>
 
       {/* Circular Tech Stack */}
-      <div
-        className={`techstack-container ${
-          showStack ? "show-stack" : ""
-        }`}
-      >
-
-        {/* Center Circle */}
+      <div className={`techstack-container ${showStack ? "show-stack" : ""}`}>
+        {/* Center circle */}
         <div className="techstack-center">
           <span>&lt;/&gt;</span>
         </div>
 
-        {/* Circular Orbit */}
+        {/* Orbit ring */}
         <div className="techstack-orbit"></div>
 
-        {/* Technologies */}
-        {technologies.map((tech, index) => (
+        {/* Technologies: each one is placed on the ring by its angle */}
+        {technologies.map(({ name, Icon, color }, index) => (
           <div
-            key={tech.name}
-            className={`tech-pill ${tech.position}`}
+            key={name}
+            className="tech-slot"
             style={{
-              animationDelay: `${index * 0.20}s`,
+              "--angle": `${(360 / technologies.length) * index - 90}deg`,
             }}
           >
-            <span className="tech-icon">
-              {tech.icon}
-            </span>
-
-            <span>{tech.name}</span>
+            <div
+              className="tech-pill"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <Icon className="tech-icon" style={{ color }} />
+              <span>{name}</span>
+            </div>
           </div>
         ))}
-
       </div>
-
     </section>
   );
 }
