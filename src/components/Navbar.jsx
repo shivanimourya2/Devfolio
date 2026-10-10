@@ -4,7 +4,7 @@ function Navbar(){
     return (
         <header className="navbar">
             <a href="#home" className="logo">
-                SM
+                SM😎
             </a>
             <nav className="desktop-nav">
                 <a href="#about">About</a>
@@ -15,7 +15,7 @@ function Navbar(){
             </nav>
 
             <button className="menu-button" aria-label="Open menu">
-                <Menu size= {28} />
+                <Menu size= {30} />
 
             </button>
 
