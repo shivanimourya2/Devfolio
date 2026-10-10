@@ -20,7 +20,11 @@
 }
 @media (min-width: 800px) { .site-footer-top { grid-template-columns: 1.1fr 1fr; align-items: start; } }
 
-.site-footer-logo { width: 3rem; height: 3rem; color: #a5e9ec; margin-bottom: 1rem; }
+.site-footer-logo 
+{ width: 3rem; 
+  height: 3rem; color: #a5e9ec;
+  
+  margin-bottom: 1rem; }
 .site-footer-brand h3 {
   font-size: clamp(2rem, 3.4vw, 2.8rem); font-weight: 700; letter-spacing: -.02em;
   background: linear-gradient(90deg, #bdf1f3, #c4b5fd);
