@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 import rizzChatImg from '../assets/projects/rizzchat.png';
 import bankingImg from '../assets/projects/banking.jpeg';
@@ -51,31 +55,121 @@ const Projects = () => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
-  const minSwipeDistance = 50;
+  const sectionRef = useRef(null);
+  const autoplayTimerRef = useRef(null);
+  const isVisibleRef = useRef(false);
 
+  const minSwipeDistance = 50;
+  const AUTOPLAY_INTERVAL = 2500; // 2.5 seconds
+
+  // Function to switch to next project
   const handleNext = () => {
     setSlideDirection('next');
     setCurrentIndex((prev) => (prev === projectsData.length - 1 ? 0 : prev + 1));
   };
 
+  // Function to switch to previous project
   const handlePrev = () => {
     setSlideDirection('prev');
     setCurrentIndex((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1));
   };
 
+  // Function to jump to specific slide
   const goToSlide = (index) => {
+    if (index === currentIndex) return;
     setSlideDirection(index > currentIndex ? 'next' : 'prev');
     setCurrentIndex(index);
   };
 
+  // Start autoplay timer (only if visible and reduced motion is false)
+  const startAutoplay = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    stopAutoplay();
+    if (isVisibleRef.current) {
+      autoplayTimerRef.current = setInterval(() => {
+        handleNext();
+      }, AUTOPLAY_INTERVAL);
+    }
+  };
+
+  // Stop/pause autoplay timer
+  const stopAutoplay = () => {
+    if (autoplayTimerRef.current) {
+      clearInterval(autoplayTimerRef.current);
+      autoplayTimerRef.current = null;
+    }
+  };
+
+  // Reset autoplay timer when manual interactions occur
+  const resetAutoplay = () => {
+    startAutoplay();
+  };
+
+  // Keyboard navigation with autoplay timer reset
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') {
+        handleNext();
+        resetAutoplay();
+      }
+      if (e.key === 'ArrowLeft') {
+        handlePrev();
+        resetAutoplay();
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex]);
+
+  // ScrollTrigger visibility detection for autoplay
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        onEnter: () => {
+          isVisibleRef.current = true;
+          startAutoplay();
+        },
+        onLeave: () => {
+          isVisibleRef.current = false;
+          stopAutoplay();
+        },
+        onEnterBack: () => {
+          isVisibleRef.current = true;
+          startAutoplay();
+        },
+        onLeaveBack: () => {
+          isVisibleRef.current = false;
+          stopAutoplay();
+        },
+      });
+    }, sectionRef);
+
+    return () => {
+      stopAutoplay();
+      ctx.revert();
+    };
   }, []);
+
+  // Update timer cycle when currentIndex changes
+  useEffect(() => {
+    if (isVisibleRef.current) {
+      startAutoplay();
+    }
+    return () => stopAutoplay();
+  }, [currentIndex]);
 
   const onTouchStart = (e) => {
     setTouchEnd(null);
@@ -89,8 +183,14 @@ const Projects = () => {
   const onTouchEndAction = () => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
-    if (distance > minSwipeDistance) handleNext();
-    if (distance < -minSwipeDistance) handlePrev();
+    if (distance > minSwipeDistance) {
+      handleNext();
+      resetAutoplay();
+    }
+    if (distance < -minSwipeDistance) {
+      handlePrev();
+      resetAutoplay();
+    }
   };
 
   const currentProject = projectsData[currentIndex];
@@ -98,7 +198,7 @@ const Projects = () => {
   const formattedTotal = String(projectsData.length).padStart(2, '0');
 
   return (
-    <section id="projects" className="editorial-projects-section">
+    <section id="projects" ref={sectionRef} className="editorial-projects-section">
       <div className="editorial-projects-header">
         <div className="section-label">
           <span className="label-dot"></span>
@@ -169,39 +269,48 @@ const Projects = () => {
               </a>
             </div>
 
-            {/* Navigation Arrows */}
-            <div className="editorial-nav-controls">
-              <button
-                onClick={handlePrev}
-                className="editorial-nav-arrow"
-                aria-label="Previous project"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+              {/* Navigation Arrows */}
+              <div className="editorial-nav-controls">
+                <button
+                  onClick={() => {
+                    handlePrev();
+                    resetAutoplay();
+                  }}
+                  className="editorial-nav-arrow"
+                  aria-label="Previous project"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
 
-              <div className="editorial-dots">
-                {projectsData.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => goToSlide(i)}
-                    className={`dot-indicator ${i === currentIndex ? 'active' : ''}`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
+                <div className="editorial-dots">
+                  {projectsData.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        goToSlide(i);
+                        resetAutoplay();
+                      }}
+                      className={`dot-indicator ${i === currentIndex ? 'active' : ''}`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => {
+                    handleNext();
+                    resetAutoplay();
+                  }}
+                  className="editorial-nav-arrow"
+                  aria-label="Next project"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
               </div>
-
-              <button
-                onClick={handleNext}
-                className="editorial-nav-arrow"
-                aria-label="Next project"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
           </div>
 
           {/* Right Column: Screenshot Visual Focal Point */}
