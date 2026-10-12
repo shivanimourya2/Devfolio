@@ -1,6 +1,4 @@
-/* ==========================================================================
-   Editorial React Projects Section Styles
-   ========================================================================== */
+
 
 .editorial-projects-section {
   --ed-bg: #030303;
@@ -94,32 +92,31 @@
   position: relative;
 }
 
-/* Slide Transition Animations */
 .editorial-project-card.slide-next {
-  animation: editorialSlideNext 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: editorialSlideNext 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .editorial-project-card.slide-prev {
-  animation: editorialSlidePrev 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: editorialSlidePrev 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes editorialSlideNext {
-  from {
+  0% {
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateX(60px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
 @keyframes editorialSlidePrev {
-  from {
+  0% {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: translateX(-60px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateX(0);
   }
