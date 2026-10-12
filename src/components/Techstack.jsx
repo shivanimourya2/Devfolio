@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import {
   FaJava,
@@ -41,50 +42,67 @@ function TechStack() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) setShowStack(true);
+      ([entry]) => {
+        setShowStack(entry.isIntersecting);
       },
-      { threshold: 0.2 }
+      {
+        threshold: 0.1,
+      }
     );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    observer.observe(section);
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="techstack-section" id="techstack" ref={sectionRef}>
-      {/* Heading */}
+    <section
+      className="techstack-section"
+      id="techstack"
+      ref={sectionRef}
+    >
       <div className="techstack-heading">
-        <span className="section-number">02 — TECHNICAL STACK ⚛</span>
+        <span className="section-number">
+          02 — TECHNICAL STACK ⚛
+        </span>
         <h2>Technologies &amp; Tools</h2>
       </div>
 
-      {/* Circular Tech Stack */}
-      <div className={`techstack-container ${showStack ? "show-stack" : ""}`}>
-        {/* Center circle */}
+      <div
+        className={`techstack-container ${
+          showStack ? "show-stack" : ""
+        }`}
+      >
         <div className="techstack-center">
           <span>&lt;/&gt;</span>
         </div>
 
-        {/* Orbit ring */}
         <div className="techstack-orbit"></div>
 
-        {/* Technologies: each one is placed on the ring by its angle */}
         {technologies.map(({ name, Icon, color }, index) => (
           <div
             key={name}
             className="tech-slot"
             style={{
-              "--angle": `${(360 / technologies.length) * index - 90}deg`,
+              "--angle": `${
+                (360 / technologies.length) * index - 90
+              }deg`,
             }}
           >
             <div
               className="tech-pill"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              style={{
+                animationDelay: `${index * 0.15}s`,
+              }}
             >
-              <Icon className="tech-icon" style={{ color }} />
+              <Icon
+                className="tech-icon"
+                style={{ color }}
+              />
               <span>{name}</span>
             </div>
           </div>
