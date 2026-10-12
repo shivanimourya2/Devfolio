@@ -6,8 +6,8 @@ import Hero from "./components/Hero";
 import TechStack from "./components/Techstack";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
-import Connect from "./components/Connect";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
       <TechStack/>
       <Projects/>
       <Experience/>
-      <Connect/>
       <Contact/>
+      <Footer/>
 
     </main>
     </>

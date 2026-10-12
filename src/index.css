@@ -54,16 +54,16 @@ textarea {
 
   z-index: 1000;
 
-  background: rgba(5, 5, 5, 0.7);
+  background: rgba(7, 0, 10, 0.463);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
-  font-family: "DM Mono", monospace;
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2.3rem;
+  font-weight: 500;
   letter-spacing: 0.15em;
 }
 
@@ -73,10 +73,10 @@ textarea {
 }
 
 .desktop-nav a {
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #999;
+  color: hsl(0, 100%, 100%);
 
   transition: color 0.3s ease;
 }

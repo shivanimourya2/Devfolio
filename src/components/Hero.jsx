@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import myPhoto from "../assets/shivani.jpeg";
+import './Hero.css';
 
 import {
   ArrowDown,
