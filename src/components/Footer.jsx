@@ -57,7 +57,7 @@ export default function Footer() {
       const o = off.getContext("2d", { willReadFrequently: true });
       const font = (s) => `800 ${s}px Inter, "Segoe UI", system-ui, sans-serif`;
       o.font = font(100);
-      const size = Math.min((100 * W * 0.93) / o.measureText("Shivani Mourya").width, bandH * 0.5);
+      const size = Math.min((100 * W * 0.93) / o.measureText("Shivani Mourya").width, bandH * 0.52);
       o.font = font(size);
       o.textAlign = "center";
       o.fillText("Shivani Mourya", W / 2, bandH * 0.78);

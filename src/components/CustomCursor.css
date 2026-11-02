@@ -4,8 +4,8 @@ body {
 
 .custom-cursor {
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 99999;
@@ -13,8 +13,8 @@ body {
 
 .cursor-dot {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -22,17 +22,26 @@ body {
   background: #ffffff;
   box-shadow:
     0 0 8px #ffffff,
-    0 0 18px rgba(168, 85, 247, 0.9);
+    0 0 16px rgba(168, 85, 247, 0.9);
 }
 
 .cursor-ring {
   position: absolute;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid rgba(216, 180, 254, 0.7);
   border-radius: 50%;
   transition: transform 0.15s ease;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .custom-cursor {
+    display: none;
+  }
 }

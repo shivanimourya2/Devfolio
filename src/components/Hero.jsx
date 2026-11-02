@@ -633,7 +633,7 @@ useEffect(() => {
         </span>
 
         <ArrowDown
-          size={14}
+          size={15}
           className="scroll-arrow-icon"
         />
       </a>

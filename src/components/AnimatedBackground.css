@@ -4,7 +4,6 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  
 }
 /* =========================
    SOFT AMBIENT GLOW
@@ -12,10 +11,10 @@
 
 .glow {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(85px);
   opacity: 0.08;
   background: #8b5cf6;
   animation: glowMove 12s ease-in-out infinite alternate;
@@ -44,11 +43,11 @@
   }
 
   50% {
-    transform: translate(80px, -50px);
+    transform: translate(60px, -40px);
   }
 
   100% {
-    transform: translate(-40px, 60px);
+    transform: translate(-30px, 45px);
   }
 }
 
@@ -58,33 +57,31 @@
 
 .bubble {
   position: absolute;
-  border: 1px solid rgba(168, 85, 247, 0.25);
   border-radius: 50%;
-  /* background: rgba(139, 92, 246, 0.025); */
   background: rgba(139, 92, 246, 0.08);
-border: 1px solid rgba(168, 85, 247, 0.45);
+  border: 1px solid rgba(168, 85, 247, 0.45);
   box-shadow:
-    0 0 25px rgba(139, 92, 246, 0.08),
-    inset 0 0 20px rgba(168, 85, 247, 0.04);
+    0 0 20px rgba(139, 92, 246, 0.08),
+    inset 0 0 16px rgba(168, 85, 247, 0.04);
 
   animation:
     floatBubble 10s ease-in-out infinite,
     bubblePulse 5s ease-in-out infinite;
 }
 
-/* Different sizes & positions */
+/* Scaled sizes & positions */
 
 .bubble-1 {
-  width: 90px;
-  height: 90px;
+  width: 68px;
+  height: 68px;
   top: 18%;
   left: 7%;
   animation-duration: 12s;
 }
 
 .bubble-2 {
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
   top: 30%;
   left: 30%;
   animation-duration: 8s;
@@ -92,8 +89,8 @@ border: 1px solid rgba(168, 85, 247, 0.45);
 }
 
 .bubble-3 {
-  width: 140px;
-  height: 140px;
+  width: 105px;
+  height: 105px;
   top: 15%;
   right: 12%;
   animation-duration: 15s;
@@ -101,8 +98,8 @@ border: 1px solid rgba(168, 85, 247, 0.45);
 }
 
 .bubble-4 {
-  width: 55px;
-  height: 55px;
+  width: 42px;
+  height: 42px;
   top: 55%;
   right: 25%;
   animation-duration: 9s;
@@ -110,8 +107,8 @@ border: 1px solid rgba(168, 85, 247, 0.45);
 }
 
 .bubble-5 {
-  width: 110px;
-  height: 110px;
+  width: 85px;
+  height: 85px;
   bottom: 15%;
   left: 15%;
   animation-duration: 14s;
@@ -119,16 +116,16 @@ border: 1px solid rgba(168, 85, 247, 0.45);
 }
 
 .bubble-6 {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   bottom: 30%;
   left: 45%;
   animation-duration: 7s;
 }
 
 .bubble-7 {
-  width: 70px;
-  height: 70px;
+  width: 54px;
+  height: 54px;
   bottom: 10%;
   right: 10%;
   animation-duration: 11s;
@@ -136,8 +133,8 @@ border: 1px solid rgba(168, 85, 247, 0.45);
 }
 
 .bubble-8 {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   top: 70%;
   left: 70%;
   animation-duration: 8s;
@@ -150,15 +147,15 @@ border: 1px solid rgba(168, 85, 247, 0.45);
   }
 
   25% {
-    transform: translate(20px, -30px);
+    transform: translate(16px, -24px);
   }
 
   50% {
-    transform: translate(-15px, -55px);
+    transform: translate(-12px, -42px);
   }
 
   75% {
-    transform: translate(25px, -25px);
+    transform: translate(20px, -20px);
   }
 
   100% {
@@ -187,7 +184,7 @@ border: 1px solid rgba(168, 85, 247, 0.45);
   height: 3px;
   border-radius: 50%;
   background: rgba(192, 132, 252, 0.7);
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
 
   animation: particleFloat 6s ease-in-out infinite;
 }
@@ -235,7 +232,7 @@ border: 1px solid rgba(168, 85, 247, 0.45);
   }
 
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-16px);
     opacity: 0.9;
   }
 }
@@ -251,9 +248,9 @@ border: 1px solid rgba(168, 85, 247, 0.45);
   }
 
   .glow {
-     opacity: 0.15;
-    width: 200px;
-    height: 200px;
+    opacity: 0.12;
+    width: 160px;
+    height: 160px;
   }
 }
 
