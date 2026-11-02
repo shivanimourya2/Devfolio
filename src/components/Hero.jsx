@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import myPhoto from "../assets/shivani.jpeg";
+import myPhoto from "../assets/Shivani.jpeg";
 import './Hero.css';
 
 import {

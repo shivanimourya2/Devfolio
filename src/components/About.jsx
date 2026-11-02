@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import avatar from "../assets/about-avatar.png";
-import "./about.css";
+import "./About.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
