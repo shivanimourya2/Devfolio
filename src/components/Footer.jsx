@@ -215,11 +215,6 @@ export default function Footer() {
       <div className="site-footer-inner" ref={innerRef}>
         <div className="site-footer-top">
           <div className="site-footer-brand" data-reveal>
-            <svg className="site-footer-logo" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6">
-              <circle cx="24" cy="24" r="21" />
-              <path d="M24 5l4.5 14.5L43 24l-14.5 4.5L24 43l-4.5-14.5L5 24l14.5-4.5L24 5Z" fill="currentColor" fillOpacity=".25" />
-              <circle cx="24" cy="24" r="2.5" fill="currentColor" />
-            </svg>
             <h3>Shivani Mourya</h3>
             <p className="site-footer-role">Full Stack Developer</p>
             <p className="site-footer-tag">Building • Learning • Creating • Contributing</p>

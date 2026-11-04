@@ -15,7 +15,6 @@ import {
   SiGithub,
   SiX,
   SiLeetcode,
-  SiGmail,
   SiDiscord,
   SiInstagram,
 } from "react-icons/si";
