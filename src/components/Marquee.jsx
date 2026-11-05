@@ -1,15 +1,13 @@
 import "./Marquee.css";
 
 const ITEMS = [
-  { emoji: "💡", text: "NEW IDEA" },
-  { emoji: "💻", text: "NEW REPO" },
-  { emoji: "🐛", text: "NEW PROBLEM" },
-  { emoji: "🔁", text: "REPEAT" },
-  { emoji: "🧠", text: "TOO MANY INTERESTS" },
-  { emoji: "💻", text: "NOT ENOUGH HOURS" },
-  { emoji: "☕", text: "STILL EXPLORING" },
+  { emoji: "🚀", text: "ASPIRING SOFTWARE ENGINEER" },
+  { emoji: "🌐", text: "FULL STACK DEVELOPMENT" },
+  { emoji: "🤝", text: "OPEN SOURCE CONTRIBUTOR" },
+  { emoji: "☕", text: "JAVA DEVELOPER" },
+  { emoji: "⚡", text: "BUILDING SCALABLE APPLICATIONS" },
+  { emoji: "🎯", text: "CONTINUOUS LEARNING" },
 ];
-
 const REPEATS = 3;
 
 const groupItems = Array.from({ length: REPEATS }, () => ITEMS).flat();
