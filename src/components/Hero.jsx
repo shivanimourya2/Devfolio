@@ -375,7 +375,7 @@ useEffect(() => {
 
             {/* Instagram */}
             <a
-              href="shivanimourya2"
+              href="https://www.instagram.com/shivanimourya2/"
               className="hero-social-item hero-gmail"
               aria-label="Instagram "
               title="Instagram"
@@ -407,7 +407,7 @@ useEffect(() => {
               className="btn btn-primary hero-cta-btn"
               id="hero-cta-work"
             >
-              <span>VIEW MY WORK</span>
+              <span>View Projects</span>
 
               <span
                 className="btn-arrow"
@@ -626,15 +626,6 @@ useEffect(() => {
         <div className="scroll-mouse-icon">
           <span className="scroll-wheel" />
         </div>
-
-        <span className="scroll-label">
-          SCROLL TO EXPLORE
-        </span>
-
-        <ArrowDown
-          size={15}
-          className="scroll-arrow-icon"
-        />
       </a>
 
     </section>

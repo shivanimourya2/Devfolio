@@ -77,13 +77,13 @@ const Contact = () => {
           <div className="contact-row">
 
             <div className="input-group">
-              <label htmlFor="name">Name 🤗</label>
+              <label htmlFor="name">Name </label>
 
               <input
                 type="text"
                 id="name"
                 name="name"
-                placeholder="Shivani"
+                placeholder="Enter your name"
                 value={formData.name}
                 onChange={handleChange}
                 required
